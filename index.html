@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Omar Nassar | Full-Stack Web Developer</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  
+    <meta
+      name="description"
+      content="Portfolio of Omar Nassar – Full-Stack Web Developer building fast, modern, and intelligent digital experiences."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- TailwindCSS CDN (v4 browser) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      body {
+        font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #000000 0, #020617 45%, #000 100%);
+        color: #e5e7eb;
+      }
+
+      .font-ar {
+        font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: radial-gradient(circle at top, #000000 0, #020617 45%, #000 100%);
+      }
+      ::-webkit-scrollbar-thumb {
+        
+        
+        
+        background: radial-gradient(circle at top, #000000 0, #020617 45%, #000 100%);
+        border-radius: 999px;
+      }
+
+
+
+
+
+
+         
+    .gradient-text {
+      background: linear-gradient(135deg, #a78bfa 0%, #22d3ee 50%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .card-glow-purple:hover {
+      box-shadow: 0 0 40px rgba(139, 92, 246, 0.3), 0 0 80px rgba(139, 92, 246, 0.1);
+    }
+    
+    .card-glow-cyan:hover {
+      box-shadow: 0 0 40px rgba(34, 211, 238, 0.3), 0 0 80px rgba(34, 211, 238, 0.1);
+    }
+    
+    .card-glow-emerald:hover {
+      box-shadow: 0 0 40px rgba(52, 211, 153, 0.3), 0 0 80px rgba(52, 211, 153, 0.1);
+    }
+    
+    .card-glow-slate:hover {
+      box-shadow: 0 0 40px rgba(148, 163, 184, 0.2), 0 0 80px rgba(148, 163, 184, 0.1);
+    }
+    
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .bg-grid {
+      background-image: 
+        linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    
+    .icon-box {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(34, 211, 238, 0.2) 100%);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+    
+    .tech-tag {
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .tech-tag:hover {
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+      border-color: rgba(34, 211, 238, 0.4);
+      transform: translateY(-2px);
+    }
+    
+    .line-decoration {
+      position: relative;
+    }
+    
+    .line-decoration::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, #a78bfa, #22d3ee);
+      border-radius: 2px;
+    }
+      /* Hero Visual Zone */
+      .hero-glow {
+        box-shadow:
+          0 0 40px rgba(168, 85, 247, 0.7),
+          0 0 80px rgba(56, 189, 248, 0.55);
+        animation: heroGlow 4s ease-in-out infinite alternate;
+      }
+
+      @keyframes heroGlow {
+        0% {
+          box-shadow:
+            0 0 40px rgba(168, 85, 247, 0.7),
+            0 0 80px rgba(56, 189, 248, 0.45);
+        }
+        100% {
+          box-shadow:
+            0 0 70px rgba(168, 85, 247, 0.9),
+            0 0 130px rgba(56, 189, 248, 0.8);
+        }
+      }
+
+      .rotate-ring {
+        animation: rotateRing 14s linear infinite;
+        transform-origin: center;
+      }
+
+      @keyframes rotateRing {
+        from {
+          transform: rotate(0deg) scale(1.02);
+        }
+        to {
+          transform: rotate(360deg) scale(1.02);
+        }
+      }
+
+      .particle {
+        animation: floatParticle 10s ease-in-out infinite;
+      }
+
+      @keyframes floatParticle {
+        0% {
+          transform: translateY(0) translateX(0) scale(1);
+          opacity: 0.1;
+        }
+        50% {
+          transform: translateY(-25px) translateX(10px) scale(1.1);
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(0) translateX(0) scale(1);
+          opacity: 0.15;
+        }
+      }
+
+      .hero-tilt-inner {
+        transition: transform 0.25s ease-out;
+        transform-style: preserve-3d;
+      }
+
+      .glass-overlay {
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      /* Reveal on scroll */
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      }
+
+      .reveal-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Timeline */
+      .timeline::before {
+        content: "";
+        position: absolute;
+        inset-block: 0.75rem;
+        left: 1.1rem;
+        width: 2px;
+        
+        
+        
+        background: radial-gradient(circle at top, #000000 0, #020617 45%, #000 100%);
+      }
+
+      @media (min-width: 768px) {
+        .timeline::before {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Simple fade-in for hero subtitle */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-up {
+        animation: fadeUp 0.8s ease-out 0.2s both;
+      }
+    </style>
+  </head>
+  <body style="        background: radial-gradient(circle at top, #000000 0, #020617 45%, #000 100%);
+">
+    <!-- Navbar -->
+    <header class="fixed inset-x-0 top-0 z-40 border-b border-slate-800/80 bg-slate-950/75 backdrop-blur-xl"   data-aos="fade-down">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
+        <a href="#hero" class="flex items-center gap-3">
+          <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-cyan-400 text-lg font-semibold text-slate-950 shadow-lg shadow-purple-500/40">
+            ON
+          </div>
+          <div class="leading-tight">
+            <p class="text-sm font-semibold tracking-wide uppercase text-slate-100">
+              Omar Nassar
+            </p>
+            <p class="text-xs text-slate-400">Full-Stack Web Developer</p>
+          </div>
+        </a>
+        <nav class="hidden items-center gap-6 text-xs font-medium text-slate-300 md:flex">
+          <a href="#about" class="hover:text-cyan-300">About</a>
+          <a href="#skills" class="hover:text-cyan-300">Skills</a>
+          <a href="#timeline" class="hover:text-cyan-300">Timeline</a>
+          <a href="#projects" class="hover:text-cyan-300">Projects</a>
+          <a href="#services" class="hover:text-cyan-300">Services</a>
+          <a href="#testimonials" class="hover:text-cyan-300">Testimonials</a>
+          <a href="#contact" class="rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-4 py-1.5 text-xs font-semibold text-slate-950 shadow-lg shadow-purple-500/50">Hire Me</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pt-20">
+      <!-- Hero Section -->
+   <!-- Hero Section -->
+    <section id="hero" class="relative min-h-[90vh] overflow-hidden" >
+        <div class="pointer-events-none absolute -left-40 -top-40 h-72 w-72 rounded-full bg-purple-500/20 blur-3xl"></div>
+        <div class="pointer-events-none absolute -right-40 bottom-0 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl"></div>
+
+        <div class="mx-auto flex max-w-6xl flex-col items-center gap-12 px-4 py-16 md:flex-row md:items-center lg:px-6 lg:py-24" data-aos="zoom-in">
+            <!-- Left: Hero Text -->
+            <div class="relative z-10 max-w-xl space-y-6 md:flex-1">
+                <div class="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-slate-900/60 px-3 py-1 text-[11px] font-medium text-purple-200 shadow-md shadow-purple-500/30 backdrop-blur-lg">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]"></span>
+                    <span>Open for freelance & remote opportunities</span>
+                </div>
+
+                <div>
+                    <p class="text-sm font-ar text-slate-400 mb-1">HI . I'M</p>
+                    <h1 class="text-4xl font-extrabold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">
+                        <span class="block">Omar Nassar</span>
+                        <span style="height: 40px;" id="animatedTitle" class="mt-2 block bg-gradient-to-r from-purple-400 via-cyan-300 to-purple-400 bg-clip-text text-2xl font-semibold text-transparent sm:text-3xl typing-cursor">
+                            Full-Stack Web Developer
+                        </span>
+                    </h1>
+                </div>
+
+                <p class="fade-up max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
+                    Building fast, modern, and intelligent digital experiences with
+                    <span class="font-semibold text-cyan-300">clean code</span>,
+                    <span class="font-semibold text-purple-300">high performance</span>,
+                    and <span class="font-semibold text-cyan-300">scalable architecture</span>
+                    that grows with your business.
+                </p>
+
+                <div class="grid gap-4 text-xs text-slate-300 sm:text-sm md:grid-cols-3">
+                    <div class="rounded-2xl bg-slate-900/70 p-4 shadow-lg shadow-purple-900/40 backdrop-blur-xl">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                            Focus
+                        </p>
+                        <p class="mt-1 text-sm font-medium text-slate-100">Full-stack web apps</p>
+                        <p class="mt-1 text-xs text-slate-400">From idea to deployment</p>
+                    </div>
+                    <div class="rounded-2xl bg-slate-900/70 p-4 shadow-lg shadow-cyan-900/40 backdrop-blur-xl">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                            Style
+                        </p>
+                        <p class="mt-1 text-sm font-medium text-slate-100">Clean, modern UI</p>
+                        <p class="mt-1 text-xs text-slate-400">Pixel-perfect, responsive</p>
+                    </div>
+                    <div class="rounded-2xl bg-slate-900/70 p-4 shadow-lg shadow-emerald-900/40 backdrop-blur-xl">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                            Mindset
+                        </p>
+                        <p class="mt-1 text-sm font-medium text-slate-100">Scalable systems</p>
+                        <p class="mt-1 text-xs text-slate-400">Performance & maintainability</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 pt-2 sm:pt-4">
+                    <button
+                        id="hireMeBtn"
+                        class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-cyan-400 px-6 py-2.5 text-xs font-semibold text-slate-950 shadow-lg shadow-purple-500/60 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-purple-500/70"
+                    >
+                        Hire Me
+                    </button>
+                    <button
+                        id="viewProjectsBtn"
+                        class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700/80 bg-slate-900/60 px-5 py-2.5 text-xs font-medium text-slate-100 shadow-md shadow-slate-900/60 backdrop-blur hover:border-cyan-400/70 hover:text-cyan-200"
+                    >
+                        View My Projects
+                    </button>
+                    <button
+                        id="downloadCvBtn"
+                        class="inline-flex items-center justify-center gap-2 rounded-full border border-purple-500/40 bg-purple-950/40 px-5 py-2.5 text-xs font-medium text-purple-100 shadow-md shadow-purple-900/60 backdrop-blur hover:border-purple-300 hover:text-purple-200"
+                    >
+                        Download CV
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right: Hero Visual Zone (Enlarged) -->
+            <div class="relative z-10 flex w-full items-center justify-center md:flex-1">
+                <div
+                    id="heroVisual"
+                    class="relative h-80 w-80 origin-center cursor-pointer rounded-[2.5rem] bg-gradient-to-br from-purple-500/20 via-slate-900/80 to-cyan-400/20 p-[3px] shadow-[0_35px_120px_rgba(15,23,42,0.9)] md:h-96 md:w-96 lg:h-[32rem] lg:w-[32rem]"
+                >
+                    <!-- Rotating outer ring -->
+                    <div
+                        class="pointer-events-none absolute inset-0 -z-10 rounded-[2.75rem] border border-purple-500/30 bg-gradient-to-b from-purple-500/10 via-transparent to-cyan-400/10 rotate-ring"
+                    ></div>
+
+                    <div
+                        id="heroVisualInner"
+                        class="hero-tilt-inner relative h-full w-full overflow-hidden rounded-[2.25rem] bg-slate-950/80 hero-glow"
+                    >
+                        <!-- Personal Photo Placeholder -->
+                        <div class="relative flex h-full w-full items-center justify-center overflow-hidden">
+                            <!-- Personal Photo Container -->
+                            <div class="relative h-full w-full rounded-3xl bg-gradient-to-br from-purple-500 via-slate-900 to-cyan-400 shadow-xl shadow-slate-950/80">
+                                <div class="absolute inset-[3px] rounded-3xl bg-slate-950/90 flex items-center justify-center h-full w-full">
+                                    <!-- Personal Photo Placeholder -->
+                                    <div class="bg-gray-200 border-2 border-dashed rounded-3xl h-full w-full flex items-center justify-center">
+                                         <img src="7048b30c361e2f0418300d69d6faaca3.jpg" style="width: 100%;">  
+                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- Floating particles -->
+                            <span
+                                class="particle pointer-events-none absolute -left-2 top-8 h-2 w-2 rounded-full bg-purple-300/80 shadow-[0_0_15px_rgba(216,180,254,0.9)]"
+                                style="animation-delay: 0s;"
+                            ></span>
+                            <span
+                                class="particle pointer-events-none absolute right-6 top-12 h-1.5 w-1.5 rounded-full bg-cyan-300/80 shadow-[0_0_14px_rgba(103,232,249,0.9)]"
+                                style="animation-delay: 2s;"
+                            ></span>
+                            <span
+                                class="particle pointer-events-none absolute left-10 bottom-12 h-1.5 w-1.5 rounded-full bg-purple-200/80 shadow-[0_0_15px_rgba(233,213,255,0.9)]"
+                                style="animation-delay: 4s;"
+                            ></span>
+                            <span
+                                class="particle pointer-events-none absolute right-8 bottom-6 h-2 w-2 rounded-full bg-cyan-200/80 shadow-[0_0_15px_rgba(165,243,252,0.9)]"
+                                style="animation-delay: 6s;"
+                            ></span>
+                        </div>
+
+                        <!-- Stats under image -->
+                        <div class="absolute inset-x-4 bottom-4 flex justify-between gap-2 text-[11px]">
+                            <div class="flex-1 rounded-xl bg-slate-900/80 px-3 py-2 text-left backdrop-blur">
+                                <p class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                                    Years of Experience
+                                </p>
+                                <p class="mt-1 text-sm font-bold text-slate-50">1.5+ Year</p>
+                            </div>
+                            <div class="flex-1 rounded-xl bg-slate-900/80 px-3 py-2 text-left backdrop-blur">
+                                <p class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                                    Technologies Used
+                                </p>
+                                <p class="mt-1 text-xs font-semibold text-cyan-300"> JS, Vue.js , PHP, , Laravel, MySQL</p>
+                            </div>
+                        </div>
+
+                        <div class="absolute left-4 top-4 rounded-xl bg-slate-900/85 px-3 py-2 text-[11px] font-medium text-slate-200 backdrop-blur">
+                            <!-- Latest Project -->
+                            <span class="ml-1 text-[11px] font-semibold text-cyan-300">Latest Project </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+       <!-- About Section -->
+  <section id="about" class="relative border-t border-slate-800/70 bg-grid">
+    <div class="mx-auto max-w-6xl px-4 py-20 lg:px-6 lg:py-28">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
+          <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">About Me</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-50 leading-tight">
+          Full-Stack Developer 
+        </h2>
+        <div class="mt-4 mx-auto w-24 h-1 bg-gradient-to-r from-purple-500 via-cyan-400 to-emerald-400 rounded-full"></div>
+      </div>
+
+      <div class="grid gap-12 lg:gap-16 lg:grid-cols-[minmax(0,1.8fr)_minmax(0,1fr)] lg:items-start">
+        
+        <!-- Main Content -->
+        <div class=" space-y-8">
+          
+          <!-- Introduction Card -->
+          <div class="relative p-6 md:p-8 rounded-3xl bg-gradient-to-br from-slate-900/90 to-slate-900/50 border border-slate-800/80 backdrop-blur-sm" data-aos="fade-up">
+            <div class="absolute top-0 left-8 w-20 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full"></div>
+            
+            <p class="text-base md:text-lg leading-relaxed text-slate-300">
+              I'm a full-stack web developer trained at 
+              <span class="font-semibold text-white">Creativo Academy</span>,
+              where I built a strong foundation in modern web technologies and
+              best practices. I have successfully completed intensive tracks covering:
+            </p>
+            
+            <!-- Tech Stack Tags -->
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span class="tech-tag px-3 py-1.5 rounded-lg text-xs font-medium text-cyan-300">HTML5</span>
+              <span class="tech-tag px-3 py-1.5 rounded-lg text-xs font-medium text-cyan-300">CSS3</span>
+              <span class="tech-tag px-3 py-1.5 rounded-lg text-xs font-medium text-cyan-300">JavaScript</span>
+              <span class="tech-tag px-3 py-1.5 rounded-lg text-xs font-medium text-cyan-300">Vue.js</span>
+              <span class="tech-tag px-3 py-1.5 rounded-lg text-xs font-medium text-cyan-300">jQuery</span>
+              <span class="tech-tag px-3 py-1.5 rounded-lg text-xs font-medium text-cyan-300">Bootstrap</span>
+              <span class="tech-tag px-3 py-1.5 rounded-lg text-xs font-medium text-cyan-300">PHP</span>
+              <span class="tech-tag px-3 py-1.5 rounded-lg text-xs font-medium text-cyan-300">MySQL</span>
+              <span class="tech-tag px-3 py-1.5 rounded-lg text-xs font-medium text-cyan-300">Laravel</span>
+            </div>
+          </div>
+
+          <!-- Current Learning -->
+          <div class="relative p-6 md:p-8 rounded-3xl bg-gradient-to-br from-purple-950/40 to-slate-900/50 border border-purple-500/20 backdrop-blur-sm" data-aos="fade-up">
+            <div class="flex items-start gap-4">
+              <div class="icon-box w-12 h-12 rounded-2xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-2">I learned</h4>
+                <p class="text-sm md:text-base leading-relaxed text-slate-300">
+                  Diving deeper into 
+                  <span class="font-semibold text-purple-300">Object-Oriented Programming (OOP)</span>,
+                  <span class="font-semibold text-purple-300">AJAX</span>, and
+                  <span class="font-semibold text-purple-300">Laravel</span> to
+                  build robust back-end systems and powerful APIs. My plan is to
+                  craft multiple large-scale, real-world projects.
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Future Goals -->
+          <div class="relative p-6 md:p-8 rounded-3xl bg-gradient-to-br from-cyan-950/30 to-slate-900/50 border border-cyan-500/20 backdrop-blur-sm" data-aos="fade-up">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-2">Future Goals</h4>
+                <p class="text-sm md:text-base leading-relaxed text-slate-300">
+                  My goal is to collaborate with companies to gain
+                  high-quality experience, build strong products, and then expand
+                  internationally — delivering premium digital experiences to
+                  clients around the world.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Cards -->
+        <div class="space-y-5  lg:sticky lg:top-8">
+          
+          <!-- Mission Card -->
+          <div data-aos="fade-left"  class="group relative p-5 rounded-2xl bg-gradient-to-br from-slate-900/95 to-purple-950/30 border border-purple-500/25 backdrop-blur-sm transition-all duration-500 card-glow-purple hover:-translate-y-1">
+            <!-- <div class="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-500"></div> -->
+            <div class="relative"  >
+              <div class="mb-3 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center">
+                  <span class="text-lg">🎯</span>
+                </div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-purple-300">Mission</h4>
+              </div>
+              <p class="text-sm leading-relaxed text-slate-300">
+                Build fast, clean, and reliable web applications that truly
+                solve problems for users and help businesses grow — from idea
+                to deployment, with attention to every detail.
+              </p>
+            </div>
+          </div>
+
+          <!-- Vision Card -->
+          <div data-aos="fade-left" class="group relative p-5 rounded-2xl bg-gradient-to-br from-slate-900/95 to-cyan-950/30 border border-cyan-400/25 backdrop-blur-sm transition-all duration-500 card-glow-cyan hover:-translate-y-1">
+            <!-- <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all duration-500"></div> -->
+            <div class="relative">
+              <div class="mb-3 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center">
+                  <span class="text-lg">🚀</span>
+                </div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-cyan-300">Vision</h4>
+              </div>
+              <p class="text-sm leading-relaxed text-slate-300">
+                Grow into a full-stack engineer capable of leading complex
+                products, working with international teams, and delivering
+                world-class digital experiences.
+              </p>
+            </div>
+          </div>
+
+          <!-- Values Card -->
+          <div data-aos="fade-left" class="group relative p-5 rounded-2xl bg-gradient-to-br from-slate-900/95 to-emerald-950/30 border border-emerald-400/20 backdrop-blur-sm transition-all duration-500 card-glow-emerald hover:-translate-y-1">
+            <!-- <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all duration-500"></div> -->
+            <div class="relative">
+              <div class="mb-3 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                  <span class="text-lg">💡</span>
+                </div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-emerald-300">Values</h4>
+              </div>
+              <ul class="space-y-2 text-sm text-slate-300">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  Clean code & maintainable architecture
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  Performance, security & scalability
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  Continuous learning & improvement
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  Clear & transparent communication
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- What Makes Me Different Card -->
+          <div data-aos="fade-left" class="group relative p-5 rounded-2xl bg-gradient-to-br from-slate-900/95 to-slate-800/30 border border-slate-600/30 backdrop-blur-sm transition-all duration-500 card-glow-slate hover:-translate-y-1">
+            <!-- <div class="absolute top-0 right-0 w-24 h-24 bg-slate-500/10 rounded-full blur-2xl group-hover:bg-slate-500/15 transition-all duration-500"></div> -->
+            <div class="relative">
+              <div class="mb-3 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-cyan-500/20 border border-slate-500/30 flex items-center justify-center">
+                  <span class="text-lg">🧩</span>
+                </div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-slate-200">What Makes Me Different</h4>
+              </div>
+              <p class="text-sm leading-relaxed text-slate-300">
+                I combine strong fundamentals in both front-end and back-end
+                with a product mindset. I don't just write code — I think
+                about the user journey, performance, maintainability, and how
+                every feature contributes to the bigger picture.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Simple header to frame the section -->
+  <header class="border-b border-slate-800/70 bg-slate-950/60 backdrop-blur" data-aos="zoom-in-up">
+    <div class="mx-auto max-w-6xl px-4 py-5 lg:px-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs uppercase tracking-[0.28em] text-purple-300">Portfolio</p>
+          <h1 class="text-lg font-semibold text-slate-50">Skills</h1>
+        </div>
+        <a href="#skills" class="rounded-xl border border-slate-700/60 bg-slate-900/50 px-3 py-2 text-xs text-slate-200 hover:bg-slate-900">Go to section</a>
+      </div>
+    </div>
+  </header>
+
+<!-- Skills Section -->
+  <section id="skills" class="relative border-t border-slate-800/70 bg-gradient-to-b from-slate-950 via-slate-900/50 to-slate-950 overflow-hidden">
+    <!-- Background Effects -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/5 to-cyan-500/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-6xl px-4 py-20 lg:px-6 lg:py-28" >
+      <!-- Section Header -->
+      <div class="text-center mb-16" data-aos="zoom-in-up">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
+          <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">Technical Skills</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-cyan-100">
+          My Tech Stack
+        </h2>
+        <p class="mx-auto mt-4 max-w-2xl text-slate-400 text-sm md:text-base leading-relaxed">
+          A comprehensive toolkit spanning modern front-end interfaces, robust back-end solutions, 
+          and developer tools that power efficient and reliable development workflows.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:gap-8 lg:grid-cols-3">
+        <!-- Front-end Card -->
+        <div class="group relative rounded-3xl border border-purple-500/20 bg-gradient-to-b from-slate-900/90 to-slate-950/90 p-6 backdrop-blur-xl hover:border-purple-500/40 transition-all duration-500 pulse-card"   data-aos="fade-right">
+          <div class="absolute inset-0 rounded-3xl card-shimmer"></div>
+          <div class="relative">
+            <!-- Card Header -->
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="text-lg font-bold text-white mb-1">Front-End</h3>
+                <p class="text-xs text-slate-400">Modern UI/UX & Interactions</p>
+              </div>
+              <div class="float-icon flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Skills List -->
+            <div class="space-y-4">
+              <!-- HTML5 -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30">
+                      <i class="devicon-html5-plain colored tech-icon"></i>
+                    </div>
+                    <span class="font-medium text-slate-100">HTML5</span>
+                  </div>
+                  <span class="text-sm font-semibold text-orange-400">95%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-400" data-skill-bar="95" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- CSS3 -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30">
+                      <i class="devicon-css3-plain colored tech-icon"></i>
+                    </div>
+                    <span class="font-medium text-slate-100">CSS3</span>
+                  </div>
+                  <span class="text-sm font-semibold text-blue-400">90%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" data-skill-bar="90" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- JavaScript -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30">
+                      <i class="devicon-javascript-plain colored tech-icon"></i>
+                    </div>
+                    <span class="font-medium text-slate-100">JavaScript</span>
+                  </div>
+                  <span class="text-sm font-semibold text-yellow-400">65%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-yellow-500 to-amber-300" data-skill-bar="65" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- Bootstrap -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 border border-purple-500/30">
+                      <i class="devicon-bootstrap-plain colored tech-icon"></i>
+                    </div>
+                    <span class="font-medium text-slate-100">Bootstrap</span>
+                  </div>
+                  <span class="text-sm font-semibold text-purple-400">85%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-purple-500 to-violet-400" data-skill-bar="85" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- jQuery -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500/20 to-sky-600/20 border border-sky-500/30">
+                      <i class="devicon-jquery-plain colored tech-icon"></i>
+                    </div>
+                    <span class="font-medium text-slate-100">jQuery</span>
+                  </div>
+                  <span class="text-sm font-semibold text-sky-400">80%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-sky-500 to-blue-400" data-skill-bar="80" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- Vue.js -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 border border-emerald-500/30">
+                      <i class="devicon-vuejs-plain colored tech-icon"></i>
+                    </div>
+                    <span class="font-medium text-slate-100">Vue.js</span>
+                  </div>
+                  <span class="text-sm font-semibold text-emerald-400">70%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400" data-skill-bar="70" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back-end Card -->
+        <div class="group relative rounded-3xl border border-cyan-500/20 bg-gradient-to-b from-slate-900/90 to-slate-950/90 p-6 backdrop-blur-xl hover:border-cyan-500/40 transition-all duration-500" style="animation: pulse-glow 4s ease-in-out infinite; --tw-shadow-color: rgba(6, 182, 212, 0.3);"   data-aos="fade-up">
+          <div class="absolute inset-0 rounded-3xl card-shimmer"></div>
+          <div class="relative">
+            <!-- Card Header -->
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="text-lg font-bold text-white mb-1">Back-End</h3>
+                <p class="text-xs text-slate-400">Logic, APIs & Data</p>
+              </div>
+              <div class="float-icon flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/30">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Skills List -->
+            <div class="space-y-4">
+              <!-- PHP -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 to-indigo-600/20 border border-indigo-500/30">
+                      <i class="devicon-php-plain colored tech-icon"></i>
+                    </div>
+                    <span class="font-medium text-slate-100">PHP</span>
+                  </div>
+                  <span class="text-sm font-semibold text-indigo-400">90%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-400" data-skill-bar="90" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- MySQL -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500/20 to-sky-600/20 border border-sky-500/30">
+                      <i class="devicon-mysql-plain colored tech-icon"></i>
+                    </div>
+                    <span class="font-medium text-slate-100">MySQL</span>
+                  </div>
+                  <span class="text-sm font-semibold text-sky-400">85%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-sky-500 to-cyan-400" data-skill-bar="85" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- OOP -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 border border-emerald-500/30">
+                      <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                      </svg>
+                    </div>
+                    <span class="font-medium text-slate-100">OOP</span>
+                  </div>
+                  <span class="text-sm font-semibold text-emerald-400">80%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-emerald-500 to-green-400" data-skill-bar="80" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- AJAX -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30">
+                      <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                      </svg>
+                    </div>
+                    <span class="font-medium text-slate-100">AJAX</span>
+                  </div>
+                  <span class="text-sm font-semibold text-blue-400">85%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-400" data-skill-bar="85" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- Laravel -->
+              <div class="group/skill">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 border border-red-500/30">
+                      <i class="devicon-laravel-original colored tech-icon"></i>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span class="font-medium text-slate-100">Laravel</span>
+                    </div>
+                  </div>
+                  <span class="text-sm font-semibold text-red-400">80%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-800/80 overflow-hidden">
+                  <div class="skill-bar h-full rounded-full bg-gradient-to-r from-red-500 to-rose-400" data-skill-bar="80" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools Card -->
+        <div class="group relative rounded-3xl border border-emerald-500/20 bg-gradient-to-b from-slate-900/90 to-slate-950/90 p-6 backdrop-blur-xl hover:border-emerald-500/40 transition-all duration-500" style="animation: pulse-glow 4s ease-in-out infinite; --tw-shadow-color: rgba(16, 185, 129, 0.3);" data-aos="fade-left">
+          <div class="absolute inset-0 rounded-3xl card-shimmer"></div>
+          <div class="relative">
+            <!-- Card Header -->
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="text-lg font-bold text-white mb-1">Tools & Software</h3>
+                <p class="text-xs text-slate-400">Everything Around the Code</p>
+              </div>
+              <div class="float-icon flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/30">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Tools List -->
+            <div class="space-y-3">
+              <!-- Git & GitHub -->
+              <div class="flex items-center gap-4 p-3 rounded-2xl bg-slate-800/40 border border-slate-700/50 hover:border-slate-600/50 hover:bg-slate-800/60 transition-all duration-300">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-500/30">
+                  <i class="devicon-git-plain colored tech-icon"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="font-medium text-slate-100">Git & GitHub</p>
+                  <p class="text-xs text-slate-400">Version control & collaboration</p>
+                </div>
+                <i class="devicon-github-original text-slate-400 text-xl"></i>
+              </div>
+
+              <!-- VS Code -->
+              <div class="flex items-center gap-4 p-3 rounded-2xl bg-slate-800/40 border border-slate-700/50 hover:border-slate-600/50 hover:bg-slate-800/60 transition-all duration-300">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30">
+                  <i class="devicon-vscode-plain colored tech-icon"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="font-medium text-slate-100">VS Code</p>
+                  <p class="text-xs text-slate-400">Primary code editor & extensions</p>
+                </div>
+              </div>
+
+              <!-- XAMPP -->
+              <div class="flex items-center gap-4 p-3 rounded-2xl bg-slate-800/40 border border-slate-700/50 hover:border-slate-600/50 hover:bg-slate-800/60 transition-all duration-300">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/30">
+                  <i class="devicon-apache-plain colored tech-icon"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="font-medium text-slate-100">XAMPP</p>
+                  <p class="text-xs text-slate-400">Local PHP & MySQL server</p>
+                </div>
+              </div>
+
+              <!-- Postman -->
+              <div class="flex items-center gap-4 p-3 rounded-2xl bg-slate-800/40 border border-slate-700/50 hover:border-slate-600/50 hover:bg-slate-800/60 transition-all duration-300">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30">
+                  <i class="devicon-postman-plain colored tech-icon"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="font-medium text-slate-100">Postman</p>
+                  <p class="text-xs text-slate-400">API testing & debugging</p>
+                </div>
+              </div>
+
+              <!-- Chrome DevTools -->
+              <div class="flex items-center gap-4 p-3 rounded-2xl bg-slate-800/40 border border-slate-700/50 hover:border-slate-600/50 hover:bg-slate-800/60 transition-all duration-300">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-500/20 to-green-500/20 border border-yellow-500/30">
+                  <i class="devicon-chrome-plain colored tech-icon"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="font-medium text-slate-100">Chrome DevTools</p>
+                  <p class="text-xs text-slate-400">Debugging, performance & audits</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+      <!-- Experience / Learning Timeline -->
+      <section id="timeline" class="relative border-t border-slate-800/70 bg-slate-950/70"  data-aos="zoom-in-up">
+        <div class="mx-auto max-w-6xl px-4 py-16 lg:px-6 lg:py-20">
+          <div class=" text-center">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.28em] text-purple-300">
+              Journey
+            </h2>
+            <p class="mt-2 text-2xl font-bold text-slate-50 sm:text-3xl">
+              Experience & learning timeline
+            </p>
+            <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-400 sm:text-[15px]">
+              From the first HTML tag to full-stack applications, this is how my
+              roadmap is structured.
+            </p>
+          </div>
+
+          <div class=" mt-10">
+            <ol class="relative timeline space-y-6 md:space-y-10">
+              <!-- 2024 - Start Front-End -->
+              <li class="relative flex flex-col gap-3 md:flex-row md:items-start"data-aos="fade-up-right">
+                <div class="relative z-10 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full border border-purple-400/80 bg-slate-950 text-[11px] font-semibold text-purple-300 shadow-md shadow-purple-500/40 md:mt-0">
+                  24
+                </div>
+                <div class="md:w-1/2 md:pr-6 md:text-right">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    2024
+                  </p>
+                  <h3 class="text-sm font-semibold text-slate-50">Beginning of Front-End</h3>
+                  <p class="mt-1 text-xs text-slate-400">
+                    First steps into web development, understanding structure,
+                    design, and how browsers render pages.
+                  </p>
+                </div>
+                <div class="hidden flex-1 md:block"></div>
+              </li>
+
+              <!-- 2024 - HTML CSS JS -->
+              <li class="relative flex flex-col gap-3 md:flex-row md:items-start" data-aos="fade-up-left">
+                <div class="relative z-10 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full border border-cyan-400/80 bg-slate-950 text-[11px] font-semibold text-cyan-300 shadow-md shadow-cyan-500/40 md:mt-0">
+                  24
+                </div>
+                <div class="hidden flex-1 md:block"></div>
+                <div class="md:w-1/2 md:pl-6">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    2024
+                  </p>
+                  <h3 class="text-sm font-semibold text-slate-50">HTML, CSS & JavaScript</h3>
+                  <p class="mt-1 text-xs text-slate-400">
+                    Building responsive layouts, understanding the DOM, and
+                    using JavaScript to add dynamic behavior to the UI.
+                  </p>
+                </div>
+              </li>
+
+              <!-- 2025 - jQuery + Bootstrap -->
+              <li class="relative flex flex-col gap-3 md:flex-row md:items-start" data-aos="fade-up-right">
+                <div class="relative z-10 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full border border-indigo-400/80 bg-slate-950 text-[11px] font-semibold text-indigo-300 shadow-md shadow-indigo-500/40 md:mt-0">
+                  25
+                </div>
+                <div class="md:w-1/2 md:pr-6 md:text-right">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    2025
+                  </p>
+                  <h3 class="text-sm font-semibold text-slate-50">jQuery & Bootstrap</h3>
+                  <p class="mt-1 text-xs text-slate-400">
+                    Faster UI building with Bootstrap and simplified DOM
+                    manipulation, animations, and AJAX with jQuery.
+                  </p>
+                </div>
+                <div class="hidden flex-1 md:block"></div>
+              </li>
+
+              <!-- 2025 - PHP + MySQL -->
+              <li class="relative flex flex-col gap-3 md:flex-row md:items-start"  data-aos="fade-up-left">
+                <div class="relative z-10 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full border border-emerald-400/80 bg-slate-950 text-[11px] font-semibold text-emerald-300 shadow-md shadow-emerald-500/40 md:mt-0">
+                  25
+                </div>
+                <div class="hidden flex-1 md:block"></div>
+                <div class="md:w-1/2 md:pl-6">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    2025
+                  </p>
+                  <h3 class="text-sm font-semibold text-slate-50">PHP & MySQL</h3>
+                  <p class="mt-1 text-xs text-slate-400">
+                    Moving to the back-end: building dynamic websites, handling
+                    forms, sessions, and working with relational databases.
+                  </p>
+                </div>
+              </li>
+
+              <!-- 2025 - OOP + AJAX -->
+              <li class="relative flex flex-col gap-3 md:flex-row md:items-start" data-aos="fade-up-right">
+                <div class="relative z-10 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full border border-fuchsia-400/80 bg-slate-950 text-[11px] font-semibold text-fuchsia-300 shadow-md shadow-fuchsia-500/40 md:mt-0">
+                  25
+                </div>
+                <div class="md:w-1/2 md:pr-6 md:text-right">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    2025
+                  </p>
+                  <h3 class="text-sm font-semibold text-slate-50">OOP & AJAX</h3>
+                  <p class="mt-1 text-xs text-slate-400">
+                    Structuring code with object-oriented principles and
+                    building smoother user experiences with asynchronous
+                    requests.
+                  </p>
+                </div>
+                <div class="hidden flex-1 md:block"></div>
+              </li>
+
+              <!-- 2025 - Laravel current stage -->
+              <li class="relative flex flex-col gap-3 md:flex-row md:items-start"  data-aos="fade-up-left">
+                <div class="relative z-10 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full border border-red-400/80 bg-slate-950 text-[11px] font-semibold text-red-300 shadow-md shadow-red-500/40 md:mt-0">
+                  25
+                </div>
+                <div class="hidden flex-1 md:block"></div>
+                <div class="md:w-1/2 md:pl-6">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    2025 (Current)
+                  </p>
+                  <h3 class="text-sm font-semibold text-slate-50">Laravel</h3>
+                  <p class="mt-1 text-xs text-slate-400">
+                    Learning Laravel to build scalable MVC applications, REST
+                    APIs, and full-stack projects with authentication and
+                    advanced features.
+                  </p>
+                </div>
+              </li>
+
+              <!-- 2025 - 5 portfolio projects planned -->
+              <li class="relative flex flex-col gap-3 md:flex-row md:items-start"  data-aos="fade-up-right">
+                <div class="relative z-10 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full border border-amber-400/80 bg-slate-950 text-[11px] font-semibold text-amber-300 shadow-md shadow-amber-500/40 md:mt-0">
+                  25
+                </div>
+                <div class="md:w-1/2 md:pr-6 md:text-right">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    2025 (Planned)
+                  </p>
+                  <h3 class="text-sm font-semibold text-slate-50">5 Major Portfolio Projects</h3>
+                  <p class="mt-1 text-xs text-slate-400">
+                    Building multiple large-scale applications to showcase full
+                    capabilities across front-end, back-end, performance, and
+                    clean architecture.
+                  </p>
+                </div>
+                <div class="hidden flex-1 md:block"></div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="relative border-t border-slate-800/70 bg-slate-950/70" >
+        <div class="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-purple-500/15 via-transparent to-transparent"></div>
+        <div class="mx-auto max-w-6xl px-4 py-16 lg:px-6 lg:py-20">
+          <div class=" text-center"  data-aos="zoom-in-up">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.28em] text-purple-300">
+              Projects
+            </h2>
+            <p class="mt-2 text-2xl font-bold text-slate-50 sm:text-3xl">
+              Selected projects & ideas in progress
+            </p>
+            <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-400 sm:text-[15px]">
+              A mix of real and planned projects showcasing different business
+              types, UI styles, and back-end structures.
+            </p>
+          </div>
+
+          <div class=" mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+            <!-- Project Card Template -->
+            <article  data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80">
+              <div class="relative h-40 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
+               
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80"><img style="width: 100%;" src="Screenshot 2025-11-26 194713.png" alt=""></div>
+                <div class="relative z-10 flex h-full items-end justify-between px-4 pb-3">
+                  <div>
+                    <span class="rounded-full bg-slate-950/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-200">
+                      Car Store
+                    </span>
+                    <p class="mt-2 text-sm font-semibold text-slate-50">Car Store Website</p>
+                  </div>
+                  <span class="rounded-xl bg-slate-950/70 px-2 py-1 text-[10px] text-slate-300">
+                    Front-end & Back-end
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-1 flex-col gap-3 px-4 py-4 text-xs text-slate-300">
+                <p>
+                  A modern, responsive car store website where users can browse
+                  cars, filter by category, view details, and send inquiries.
+                </p>
+                <div>
+                  <p class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    Features
+                  </p>
+                  <ul class="space-y-1 text-[11px] text-slate-300">
+                    <li>Car listing with filters and search</li>
+                    <li>Responsive design for mobile & desktop</li>
+                    <li>Contact & booking form</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    Tech Stack
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 text-[10px]">
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">HTML</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">CSS</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">JavaScript</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">PHP</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">MySQL</span>
+                  </div>
+                </div>
+                <div class="mt-2 flex gap-2 pt-1">
+                  <a
+                    href="https://github.com/omar6940000/car-website.git"
+                    class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] font-medium text-slate-200 hover:border-cyan-400 hover:text-cyan-200"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href="https://omar6940000.github.io/car-website/"
+                    class="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-2 py-1.5 text-[11px] font-semibold text-slate-950 hover:from-purple-400 hover:to-cyan-300"
+                  >
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Restaurant Website -->
+            <article  data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80">
+              <div class="relative h-40 overflow-hidden bg-gradient-to-br from-rose-500/40 via-slate-950 to-amber-400/30">
+                <div class="relative z-10 flex h-full items-end justify-between px-4 pb-3">
+                  <div>
+                    <span class="rounded-full bg-slate-950/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-200">
+                      Restaurant
+                    </span>
+                    <p class="mt-2 text-sm font-semibold text-slate-50">Restaurant Website</p>
+                  </div>
+                  <span class="rounded-xl bg-slate-950/70 px-2 py-1 text-[10px] text-slate-300">
+                    Menu & booking
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-1 flex-col gap-3 px-4 py-4 text-xs text-slate-300">
+                <p>
+                  Elegant restaurant website with interactive menu, daily offers,
+                  and reservation system for a better customer experience.
+                </p>
+                <div>
+                  <p class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    Features
+                  </p>
+                  <ul class="space-y-1 text-[11px] text-slate-300">
+                    <li>Menu with categories & images</li>
+                    <li>Online table reservation form</li>
+                    <li>Special offers & events section</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    Tech Stack
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 text-[10px]">
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">HTML</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">CSS</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">JavaScript</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">Bootstrap</span>
+                  </div>
+                </div>
+                <div class="mt-2 flex gap-2 pt-1">
+                  <a
+                    href="#"
+                    class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] font-medium text-slate-200 hover:border-cyan-400 hover:text-cyan-200"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href="#"
+                    class="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-2 py-1.5 text-[11px] font-semibold text-slate-950 hover:from-purple-400 hover:to-cyan-300"
+                  >
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Decoration Company Website -->
+            <article  data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80">
+              <div class="relative h-40 overflow-hidden bg-gradient-to-br from-emerald-400/30 via-slate-950 to-sky-400/40">
+                <div class="relative z-10 flex h-full items-end justify-between px-4 pb-3">
+                  <div>
+                    <span class="rounded-full bg-slate-950/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-200">
+                      Decoration
+                    </span>
+                    <p class="mt-2 text-sm font-semibold text-slate-50">Decoration Company Website</p>
+                  </div>
+                  <span class="rounded-xl bg-slate-950/70 px-2 py-1 text-[10px] text-slate-300">
+                    Portfolio & services
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-1 flex-col gap-3 px-4 py-4 text-xs text-slate-300">
+                <p>
+                  A stylish showcase website for a decoration company with
+                  projects gallery, services, and client testimonials.
+                </p>
+                <div>
+                  <p class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    Features
+                  </p>
+                  <ul class="space-y-1 text-[11px] text-slate-300">
+                    <li>Projects gallery with filters</li>
+                    <li>Services overview & pricing ideas</li>
+                    <li>Contact & quote request form</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    Tech Stack
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 text-[10px]">
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">HTML</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">CSS</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">JavaScript</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">PHP</span>
+                  </div>
+                </div>
+                <div class="mt-2 flex gap-2 pt-1">
+                  <a
+                    href="#"
+                    class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] font-medium text-slate-200 hover:border-cyan-400 hover:text-cyan-200"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href="#"
+                    class="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-2 py-1.5 text-[11px] font-semibold text-slate-950 hover:from-purple-400 hover:to-cyan-300"
+                  >
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Real Estate Website -->
+            <article  data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80">
+              <div class="relative h-40 overflow-hidden bg-gradient-to-br from-sky-500/40 via-slate-950 to-purple-500/40">
+                <div class="relative z-10 flex h-full items-end justify-between px-4 pb-3">
+                  <div>
+                    <span class="rounded-full bg-slate-950/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-200">
+                      Real Estate
+                    </span>
+                    <p class="mt-2 text-sm font-semibold text-slate-50">Real Estate Website</p>
+                  </div>
+                  <span class="rounded-xl bg-slate-950/70 px-2 py-1 text-[10px] text-slate-300">
+                    Listings & filtering
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-1 flex-col gap-3 px-4 py-4 text-xs text-slate-300">
+                <p>
+                  A real estate platform where users can explore properties,
+                  filter by location and price, and request more information.
+                </p>
+                <div>
+                  <p class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    Features
+                  </p>
+                  <ul class="space-y-1 text-[11px] text-slate-300">
+                    <li>Property cards with images & details</li>
+                    <li>Advanced filtering by type and budget</li>
+                    <li>Contact form for property inquiries</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    Tech Stack
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 text-[10px]">
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">HTML</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">CSS</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">JavaScript</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">PHP</span>
+                    <span class="rounded-full bg-slate-900 px-2 py-0.5 text-slate-200">MySQL</span>
+                  </div>
+                </div>
+                <div class="mt-2 flex gap-2 pt-1">
+                  <a
+                    href="#"
+                    class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] font-medium text-slate-200 hover:border-cyan-400 hover:text-cyan-200"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href="#"
+                    class="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-2 py-1.5 text-[11px] font-semibold text-slate-950 hover:from-purple-400 hover:to-cyan-300"
+                  >
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Phone Store (Coming Soon) -->
+            <article  data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-dashed border-slate-700/80  shadow-lg shadow-slate-950/60">
+              <div class="relative h-40 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(96,165,250,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(236,72,153,0.5),transparent_55%)] opacity-70"></div>
+                <div class="relative z-10 flex h-full items-center justify-center">
+                  <span class="rounded-full bg-slate-950/80 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-200">
+                    Coming Soon
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-1 flex-col gap-3 px-4 py-4 text-xs text-slate-300">
+                <p class="text-sm font-semibold text-slate-50">Phone Store Website</p>
+                <p>
+                  Planned e-commerce style store focused on smartphones,
+                  categories, and comparison between models.
+                </p>
+                <div>
+                  <p class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    Planned Features
+                  </p>
+                  <ul class="space-y-1 text-[11px] text-slate-300">
+                    <li>Product listing with filters & sorting</li>
+                    <li>Cart, wishlist and product comparison</li>
+                    <li>Responsive dashboard-like admin area</li>
+                  </ul>
+                </div>
+                <p class="mt-1 text-[11px] text-cyan-300">Status: Design & architecture phase</p>
+              </div>
+            </article>
+
+            <!-- Clothes Store (Coming Soon) -->
+            <article  data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-dashed border-slate-700/80  shadow-lg shadow-slate-950/60">
+              <div class="relative h-40 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(244,114,182,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(52,211,153,0.5),transparent_55%)] opacity-70"></div>
+                <div class="relative z-10 flex h-full items-center justify-center">
+                  <span class="rounded-full bg-slate-950/80 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-200">
+                    Coming Soon
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-1 flex-col gap-3 px-4 py-4 text-xs text-slate-300">
+                <p class="text-sm font-semibold text-slate-50">Clothes Store Website</p>
+                <p>
+                  Planned online clothing store with product collections,
+                  filters, and an optimized checkout flow.
+                </p>
+                <div>
+                  <p class="mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    Planned Features
+                  </p>
+                  <ul class="space-y-1 text-[11px] text-slate-300">
+                    <li>Collections, categories & sizes filters</li>
+                    <li>Simple and clean checkout experience</li>
+                    <li>Admin dashboard for managing products</li>
+                  </ul>
+                </div>
+                <p class="mt-1 text-[11px] text-cyan-300">Status: Wireframing & research</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="relative border-t border-slate-800/70 bg-gradient-to-b from-slate-950/80 to-slate-950/40">
+        <div class="mx-auto max-w-6xl px-4 py-16 lg:px-6 lg:py-20">
+          <div class=" text-center" data-aos="zoom-in-up">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.28em] text-purple-300">
+              Services
+            </h2>
+            <p class="mt-2 text-2xl font-bold text-slate-50 sm:text-3xl">
+              What I can build for you
+            </p>
+            <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-400 sm:text-[15px]">
+              From simple landing pages to complex dashboards and integrations,
+              I focus on clean, scalable, and high-performing solutions.
+            </p>
+          </div>
+
+          <div class=" mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Service Card -->
+            <div  data-aos="zoom-in-up" class="group flex flex-col rounded-2xl border border-slate-800 bg-slate-950/80 p-5 shadow-lg shadow-slate-950/80 transition hover:-translate-y-1 hover:border-purple-400/60 hover:shadow-purple-900/70">
+              <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-cyan-400 text-sm text-slate-950 shadow-md shadow-purple-500/50">
+                🌐
+              </div>
+              <h3 class="text-sm font-semibold text-slate-50">Full Website Development</h3>
+              <p class="mt-2 text-xs text-slate-300">
+                Complete websites built from scratch — planning, design,
+                front-end, back-end, and deployment.
+              </p>
+            </div>
+
+            <div  data-aos="zoom-in-up" class="group flex flex-col rounded-2xl border border-slate-800 bg-slate-950/80 p-5 shadow-lg shadow-slate-950/80 transition hover:-translate-y-1 hover:border-purple-400/60 hover:shadow-purple-900/70">
+              <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-indigo-400 text-sm text-slate-950 shadow-md shadow-sky-500/50">
+                📄
+              </div>
+              <h3 class="text-sm font-semibold text-slate-50">Landing Pages</h3>
+              <p class="mt-2 text-xs text-slate-300">
+                High-converting landing pages for products, services, or
+                campaigns, optimized for speed and clarity.
+              </p>
+            </div>
+
+            <div  data-aos="zoom-in-up" class="group flex flex-col rounded-2xl border border-slate-800 bg-slate-950/80 p-5 shadow-lg shadow-slate-950/80 transition hover:-translate-y-1 hover:border-purple-400/60 hover:shadow-purple-900/70">
+              <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-lime-300 text-sm text-slate-950 shadow-md shadow-emerald-400/50">
+                🛒
+              </div>
+              <h3 class="text-sm font-semibold text-slate-50">Online Store Development</h3>
+              <p class="mt-2 text-xs text-slate-300">
+                Custom e-commerce solutions with product management, cart,
+                checkout, and basic analytics.
+              </p>
+            </div>
+
+            <div  data-aos="zoom-in-up" class="group flex flex-col rounded-2xl border border-slate-800 bg-slate-950/80 p-5 shadow-lg shadow-slate-950/80 transition hover:-translate-y-1 hover:border-purple-400/60 hover:shadow-purple-900/70">
+              <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-orange-400 text-sm text-slate-950 shadow-md shadow-amber-500/50">
+                📊
+              </div>
+              <h3 class="text-sm font-semibold text-slate-50">Dashboard Systems</h3>
+              <p class="mt-2 text-xs text-slate-300">
+                Admin panels and dashboards for managing data, users, and
+                content with a clean and intuitive UI.
+              </p>
+            </div>
+
+            <div  data-aos="zoom-in-up" class="group flex flex-col rounded-2xl border border-slate-800 bg-slate-950/80 p-5 shadow-lg shadow-slate-950/80 transition hover:-translate-y-1 hover:border-purple-400/60 hover:shadow-purple-900/70">
+              <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-fuchsia-500 to-purple-500 text-sm text-slate-50 shadow-md shadow-fuchsia-500/50">
+                🔗
+              </div>
+              <h3 class="text-sm font-semibold text-slate-50">API Integration</h3>
+              <p class="mt-2 text-xs text-slate-300">
+                Connecting your website with external APIs for payments, maps,
+                auth, and more.
+              </p>
+            </div>
+
+            <div  data-aos="zoom-in-up" class="group flex flex-col rounded-2xl border border-slate-800 bg-slate-950/80 p-5 shadow-lg shadow-slate-950/80 transition hover:-translate-y-1 hover:border-purple-400/60 hover:shadow-purple-900/70">
+              <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-rose-500 text-sm text-slate-50 shadow-md shadow-rose-500/50">
+                ⚙️
+              </div>
+              <h3 class="text-sm font-semibold text-slate-50">Performance & Bug Fixing</h3>
+              <p class="mt-2 text-xs text-slate-300">
+                Performance optimization, debugging, and refactoring existing
+                code to be cleaner and more maintainable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="relative border-t border-slate-800/70 bg-slate-950/80" data-aos="fade-up"
+     data-aos-duration="3000" >
+        <div class="mx-auto max-w-6xl px-4 py-16 lg:px-6 lg:py-20">
+          <div class=" text-center">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.28em] text-purple-300">
+              Testimonials
+            </h2>
+            <p class="mt-2 text-2xl font-bold text-slate-50 sm:text-3xl">
+              What people say
+            </p>
+            <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-400 sm:text-[15px]">
+              Real feedback helps me improve every project. Here are some
+              placeholder testimonials to show the style — ready for your future
+              clients.
+            </p>
+          </div>
+
+          <div class=" mt-10">
+            <div class="relative mx-auto max-w-3xl overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 p-6 shadow-xl shadow-slate-950/80">
+              <div id="testimonialSlider" class="relative min-h-[160px]">
+                <!-- Slide 1 -->
+                <figure class="testimonial-slide flex flex-col gap-4">
+                  <p class="text-sm text-slate-200">
+                    "Omar is a very promising full-stack developer. His code is
+                    clean, organized, and he always thinks about scalability and
+                    maintainability. I'm confident he will deliver great
+                    products as he continues to grow."
+                  </p>
+                  <figcaption class="flex items-center justify-between text-xs text-slate-400">
+                    <div>
+                      <p class="font-semibold text-slate-100">Creativo Academy Mentor</p>
+                      <p>Mentor & Instructor</p>
+                    </div>
+                    <span class="rounded-full bg-slate-900 px-2 py-1 text-[11px] text-emerald-300">
+                      Placeholder
+                    </span>
+                  </figcaption>
+                </figure>
+
+                <!-- Slide 2 -->
+                <figure class="testimonial-slide hidden flex-col gap-4">
+                  <p class="text-sm text-slate-200">
+                    "Very dedicated, always asking the right questions and
+                    pushing for better solutions. Omar focuses on quality and
+                    understands how to turn requirements into working features."
+                  </p>
+                  <figcaption class="flex items-center justify-between text-xs text-slate-400">
+                    <div>
+                      <p class="font-semibold text-slate-100">Senior Developer</p>
+                      <p>Code Review & Guidance</p>
+                    </div>
+                    <span class="rounded-full bg-slate-900 px-2 py-1 text-[11px] text-emerald-300">
+                      Placeholder
+                    </span>
+                  </figcaption>
+                </figure>
+
+                <!-- Slide 3 -->
+                <figure class="testimonial-slide hidden flex-col gap-4">
+                  <p class="text-sm text-slate-200">
+                    "Omar is detail-oriented and cares about how users interact
+                    with the product. From performance to UI polish, he gives
+                    attention to every part of the experience."
+                  </p>
+                  <figcaption class="flex items-center justify-between text-xs text-slate-400">
+                    <div>
+                      <p class="font-semibold text-slate-100">Future Client</p>
+                      <p>CEO, Placeholder Company</p>
+                    </div>
+                    <span class="rounded-full bg-slate-900 px-2 py-1 text-[11px] text-emerald-300">
+                      Placeholder
+                    </span>
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div class="mt-5 flex items-center justify-between text-[11px] text-slate-400">
+                <p>Slider is ready for your real testimonials.</p>
+                <div class="flex items-center gap-2">
+                  <button
+                    id="prevTestimonial"
+                    class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-700 bg-slate-950 text-xs hover:border-purple-400 hover:text-purple-200"
+                  >
+                    ◀
+                  </button>
+                  <div class="flex items-center gap-1">
+                    <span class="h-1.5 w-4 rounded-full bg-purple-400" data-testimonial-dot="0"></span>
+                    <span class="h-1.5 w-1.5 rounded-full bg-slate-600" data-testimonial-dot="1"></span>
+                    <span class="h-1.5 w-1.5 rounded-full bg-slate-600" data-testimonial-dot="2"></span>
+                  </div>
+                  <button
+                    id="nextTestimonial"
+                    class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-700 bg-slate-950 text-xs hover:border-purple-400 hover:text-purple-200"
+                  >
+                    ▶
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="relative border-t border-slate-800/70 bg-gradient-to-b from-slate-950/85 to-slate-950/95" data-aos="fade-up"
+     data-aos-duration="3000">
+        <div class="mx-auto max-w-6xl px-4 py-16 lg:px-6 lg:py-20">
+          <div class=" text-center">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.28em] text-purple-300">
+              Contact
+            </h2>
+            <p class="mt-2 text-2xl font-bold text-slate-50 sm:text-3xl">
+              Let's build something great together
+            </p>
+            <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-400 sm:text-[15px]">
+              Ready to start a project, need help with an existing one, or just
+              want to say hi? Send a message and I'll get back to you as soon as
+              possible.
+            </p>
+          </div>
+
+          <div class=" mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+            <!-- Contact Form -->
+            <div class="rounded-2xl border border-slate-800 bg-slate-950/80 p-6 shadow-xl shadow-slate-950/80">
+              <form id="contactForm" class="space-y-4 text-sm">
+                <div class="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <label for="name" class="mb-1 block text-xs font-medium text-slate-200">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      class="w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-xs text-slate-100 outline-none ring-0 transition placeholder:text-slate-500 focus:border-purple-400 focus:ring-2 focus:ring-purple-500/30"
+                      placeholder="Your full name"
+                    />
+                  </div>
+                  <div>
+                    <label for="email" class="mb-1 block text-xs font-medium text-slate-200">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      class="w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-xs text-slate-100 outline-none ring-0 transition placeholder:text-slate-500 focus:border-purple-400 focus:ring-2 focus:ring-purple-500/30"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="subject" class="mb-1 block text-xs font-medium text-slate-200">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                    class="w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-xs text-slate-100 outline-none ring-0 transition placeholder:text-slate-500 focus:border-purple-400 focus:ring-2 focus:ring-purple-500/30"
+                    placeholder="Project idea, collaboration, question..."
+                  />
+                </div>
+
+                <div>
+                  <label for="message" class="mb-1 block text-xs font-medium text-slate-200">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    required
+                    class="w-full resize-none rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-xs text-slate-100 outline-none ring-0 transition placeholder:text-slate-500 focus:border-purple-400 focus:ring-2 focus:ring-purple-500/30"
+                    placeholder="Tell me a bit about your project, goals, and timeline."
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-cyan-400 px-6 py-2.5 text-xs font-semibold text-slate-950 shadow-lg shadow-purple-500/60 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-purple-500/80"
+                >
+                  Send Message
+                </button>
+
+                <p id="contactStatus" class="text-xs text-slate-400"></p>
+              </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="space-y-5 text-sm">
+              <div class="rounded-2xl border border-slate-800 bg-slate-950/80 p-5 shadow-xl shadow-slate-950/80">
+                <h3 class="text-sm font-semibold text-slate-50">Direct Contact</h3>
+                <p class="mt-1 text-xs text-slate-400">
+                  Prefer to reach out directly? Use any of the channels below.
+                </p>
+
+                <div class="mt-4 space-y-3 text-xs">
+                  <a href="mailto:omar6940000@gmail.com" class="flex items-center gap-3 text-slate-200 hover:text-cyan-300">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-[13px]">✉️</span>
+                    <span>omar6940000@gmail.com</span>
+                  </a>
+
+                  <a href="https://wa.me/201280402765" target="_blank" class="flex items-center gap-3 text-slate-200 hover:text-emerald-300">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/20 text-[15px]">🟢</span>
+                    <span>WhatsApp (placeholder)</span>
+                  </a>
+
+                  <a href="https://github.com/omar6940000" target="_blank" class="flex items-center gap-3 text-slate-200 hover:text-slate-50">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-[14px]">🐱</span>
+                    <span>GitHub Profile (placeholder)</span>
+                  </a>
+
+                  <!-- <a href="https://linkedin.com" target="_blank" class="flex items-center gap-3 text-slate-200 hover:text-sky-300">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-sky-500/20 text-[14px]">in</span>
+                    <span>LinkedIn Profile (placeholder)</span>
+                  </a> -->
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-slate-800 bg-slate-950/80 p-5 shadow-xl shadow-slate-950/80 text-xs text-slate-300">
+                <p class="font-semibold text-slate-100">Working style</p>
+                <ul class="mt-2 space-y-1">
+                  <li>• Clear project breakdown & milestones</li>
+                  <li>• Regular updates & communication</li>
+                  <li>• Clean, well-documented code</li>
+                  <li>• Focus on long-term maintainability</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-slate-950/95">
+      <div class="mx-auto max-w-6xl px-4 py-8 text-xs text-slate-400 lg:px-6">
+        <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p class="font-semibold text-slate-100">Omar Nassar</p>
+            <p class="mt-1 text-[11px] text-slate-400">
+              Designed & Developed by <span class="text-purple-300">Omar Nassar</span>.
+            </p>
+            <p class="mt-1 text-[11px] text-slate-500">© <span id="year"></span> All rights reserved.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <div class="flex flex-wrap gap-3">
+              <a href="#hero" class="hover:text-cyan-300">Home</a>
+              <a href="#projects" class="hover:text-cyan-300">Projects</a>
+              <a href="#services" class="hover:text-cyan-300">Services</a>
+              <a href="#contact" class="hover:text-cyan-300">Contact</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <a
+                href="https://github.com/omar6940000"
+                target="_blank"
+                class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-700 bg-slate-950 text-[13px] text-slate-200 hover:border-slate-400"
+                aria-label="GitHub"
+              >
+                🐱
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-700 bg-slate-950 text-[13px] text-slate-200 hover:border-sky-400"
+                aria-label="LinkedIn"
+              >
+                in
+              </a>
+              <a
+                href="https://wa.me/201000000000"
+                target="_blank"
+                class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-700 bg-slate-950 text-[13px] text-slate-200 hover:border-emerald-400"
+                aria-label="WhatsApp"
+              >
+                ☎
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+
+    
+
+         // Typing animation for the title
+        const titles = [
+            "Full-Stack Web Developer",
+            "Front End Developer", 
+            "Back End Developer"
+        ];
+        
+        let currentTitleIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        let deletingSpeed = 50;
+        let pauseTime = 2000;
+        
+        const animatedTitleElement = document.getElementById('animatedTitle');
+        
+        function typeWriter() {
+            const currentTitle = titles[currentTitleIndex];
+            
+            if (!isDeleting) {
+                // Typing
+                animatedTitleElement.textContent = currentTitle.substring(0, currentCharIndex + 1);
+                currentCharIndex++;
+                
+                if (currentCharIndex === currentTitle.length) {
+                    // Finished typing, pause before deleting
+                    isDeleting = true;
+                    setTimeout(typeWriter, pauseTime);
+                    return;
+                }
+            } else {
+                // Deleting
+                animatedTitleElement.textContent = currentTitle.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+                
+                if (currentCharIndex === 0) {
+                    // Finished deleting, move to next title
+                    isDeleting = false;
+                    currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+                }
+            }
+            
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(typeWriter, speed);
+        }
+        
+        // Start the typing animation
+        typeWriter();
+        
+        // Button interactions
+        document.getElementById('hireMeBtn').addEventListener('click', function() {
+            // Smooth scroll to contact section or open contact modal
+            window.location.href = 'mailto:omar@example.com?subject=Hiring Inquiry';
+        });
+        
+        document.getElementById('viewProjectsBtn').addEventListener('click', function() {
+            // Scroll to projects section or show projects
+            alert('Projects section coming soon!');
+        });
+        
+        document.getElementById('downloadCvBtn').addEventListener('click', function() {
+            // Download CV
+            alert('CV download coming soon!');
+        });
+        
+        // Hero visual interaction
+        const heroVisual = document.getElementById('heroVisual');
+        heroVisual.addEventListener('click', function() {
+            this.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 300);
+        });
+
+       
+
+
+
+
+
+
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Set current year in footer
+        const yearSpan = document.getElementById("year");
+        if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+        // Smooth scroll buttons in hero
+        const hireMeBtn = document.getElementById("hireMeBtn");
+        const viewProjectsBtn = document.getElementById("viewProjectsBtn");
+        const downloadCvBtn = document.getElementById("downloadCvBtn");
+
+        if (hireMeBtn) {
+          hireMeBtn.addEventListener("click", () => {
+            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+          });
+        }
+
+        if (viewProjectsBtn) {
+          viewProjectsBtn.addEventListener("click", () => {
+            document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+          });
+        }
+
+        if (downloadCvBtn) {
+          downloadCvBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            alert("CV download will be available soon. This is a placeholder button.");
+          });
+        }
+
+        // Hero 3D tilt effect
+        const heroVisual = document.getElementById("heroVisual");
+        const heroVisualInner = document.getElementById("heroVisualInner");
+        if (heroVisual && heroVisualInner) {
+          const maxRotate = 12; // degrees
+          heroVisual.addEventListener("mousemove", (e) => {
+            const rect = heroVisual.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateY = ((x - centerX) / centerX) * maxRotate;
+            const rotateX = -((y - centerY) / centerY) * maxRotate;
+            heroVisualInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+          });
+
+          heroVisual.addEventListener("mouseleave", () => {
+            heroVisualInner.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0)";
+          });
+        }
+
+
+
+
+
+
+
+   // Reveal on scroll animation
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, index * 150);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Add stagger animation to cards
+    document.querySelectorAll('.reveal-on-scroll').forEach((el, index) => {
+      el.style.transitionDelay = `${index * 0.1}s`;
+    });
+
+
+
+
+
+
+
+
+
+
+
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll(".reveal-on-scroll");
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.15 }
+          );
+          revealElements.forEach((el) => observer.observe(el));
+        } else {
+          revealElements.forEach((el) => el.classList.add("visible"));
+        }
+
+        // Animate skill bars when in view
+        const skillBars = document.querySelectorAll("[data-skill-bar]");
+        if ("IntersectionObserver" in window && skillBars.length) {
+          const skillObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const el = entry.target;
+                  const value = el.getAttribute("data-skill-bar");
+                  if (value) {
+                    el.style.width = value + "%";
+                  }
+                  skillObserver.unobserve(el);
+                }
+              });
+            },
+            { threshold: 0.3 }
+          );
+          skillBars.forEach((bar) => skillObserver.observe(bar));
+        } else {
+          skillBars.forEach((bar) => {
+            const value = bar.getAttribute("data-skill-bar");
+            if (value) bar.style.width = value + "%";
+          });
+        }
+
+        // Contact form (front-end only)
+        const contactForm = document.getElementById("contactForm");
+        const contactStatus = document.getElementById("contactStatus");
+        if (contactForm && contactStatus) {
+          contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            contactStatus.textContent = "Thank you! This is a demo form — your message is not actually sent.";
+            contactStatus.classList.remove("text-red-400");
+            contactStatus.classList.add("text-emerald-300");
+            contactForm.reset();
+          });
+        }
+
+        // Testimonials slider
+        const slides = Array.from(document.querySelectorAll(".testimonial-slide"));
+        const prevBtn = document.getElementById("prevTestimonial");
+        const nextBtn = document.getElementById("nextTestimonial");
+        const dots = Array.from(document.querySelectorAll("[data-testimonial-dot]"));
+        let currentSlide = 0;
+        let sliderInterval;
+
+        const showSlide = (index) => {
+          if (!slides.length) return;
+          currentSlide = (index + slides.length) % slides.length;
+          slides.forEach((slide, i) => {
+            slide.classList.toggle("hidden", i !== currentSlide);
+          });
+          dots.forEach((dot, i) => {
+            if (i === currentSlide) {
+              dot.classList.remove("w-1.5", "bg-slate-600");
+              dot.classList.add("w-4", "bg-purple-400");
+            } else {
+              dot.classList.remove("w-4", "bg-purple-400");
+              dot.classList.add("w-1.5", "bg-slate-600");
+            }
+          });
+        };
+
+        const startSlider = () => {
+          if (sliderInterval) clearInterval(sliderInterval);
+          sliderInterval = setInterval(() => {
+            showSlide(currentSlide + 1);
+          }, 7000);
+        };
+
+        if (slides.length) {
+          showSlide(0);
+          startSlider();
+
+          if (prevBtn) {
+            prevBtn.addEventListener("click", () => {
+              showSlide(currentSlide - 1);
+              startSlider();
+            });
+          }
+          if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+              showSlide(currentSlide + 1);
+              startSlider();
+            });
+          }
+        }
+      });
+    </script>
+    <script>
+  AOS.init();
+</script>
+  </body>
+</html>
