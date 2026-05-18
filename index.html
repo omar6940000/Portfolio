@@ -15,566 +15,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
 
-    <style>
-      :root {
-        color-scheme: dark;
-      }
-
-      body {
-        font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: radial-gradient(circle at top, #000000 0, #020617 45%, #000 100%);
-        color: #e5e7eb;
-        transition: direction 0.3s ease;
-      }
-
-      body.rtl {
-        direction: rtl;
-        font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      }
-
-      .font-ar {
-        font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      }
-
-      /* Active Nav Link */
-      .nav-link {
-        position: relative;
-        padding: 6px 0;
-        transition: all 0.3s ease;
-      }
-
-      .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #a78bfa, #22d3ee);
-        border-radius: 2px;
-        transition: width 0.3s ease;
-      }
-
-      .nav-link:hover::after {
-        width: 100%;
-      }
-
-      .nav-link.active {
-        color: #22d3ee;
-      }
-
-      .nav-link.active::after {
-        width: 100%;
-      }
-
-      /* Language Toggle Button */
-      .lang-toggle {
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 12px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(34, 211, 238, 0.15) 100%);
-        border: 1px solid rgba(139, 92, 246, 0.3);
-        font-size: 11px;
-        font-weight: 600;
-        color: #c4b5fd;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .lang-toggle:hover {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(34, 211, 238, 0.25) 100%);
-        border-color: rgba(139, 92, 246, 0.5);
-        transform: translateY(-1px);
-      }
-
-      .lang-toggle .lang-icon {
-        font-size: 14px;
-      }
-
-      /* Mobile nav active */
-      .mobile-nav-link.active {
-        background: rgba(34, 211, 238, 0.1);
-        color: #22d3ee;
-        border-left: 3px solid #22d3ee;
-      }
-
-      body.rtl .mobile-nav-link.active {
-        border-left: none;
-        border-right: 3px solid #22d3ee;
-      }
-
-      /* Loading Screen */
-      .loader-wrapper {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #000000 0%, #0f0a1e 50%, #000000 100%);
-        transition: opacity 0.6s ease, visibility 0.6s ease;
-      }
-
-      .loader-wrapper.hidden {
-        opacity: 0;
-        visibility: hidden;
-      }
-
-      .loader-content {
-        text-align: center;
-      }
-
-      .loader-logo {
-        width: 100px;
-        height: 100px;
-        margin: 0 auto 30px;
-        position: relative;
-      }
-
-      .loader-ring {
-        position: absolute;
-        inset: 0;
-        border-radius: 50%;
-        border: 3px solid transparent;
-        border-top-color: #a78bfa;
-        animation: spin 1.2s linear infinite;
-      }
-
-      .loader-ring:nth-child(2) {
-        inset: 8px;
-        border-top-color: #22d3ee;
-        animation-duration: 1s;
-        animation-direction: reverse;
-      }
-
-      .loader-ring:nth-child(3) {
-        inset: 16px;
-        border-top-color: #34d399;
-        animation-duration: 1.5s;
-      }
-
-      .loader-initials {
-        position: absolute;
-        inset: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #a78bfa 0%, #22d3ee 100%);
-        border-radius: 50%;
-        font-size: 24px;
-        font-weight: 800;
-        color: #000;
-      }
-
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-
-      .loader-text {
-        font-size: 14px;
-        color: #94a3b8;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-bottom: 20px;
-      }
-
-      .loader-progress {
-        width: 200px;
-        height: 3px;
-        background: rgba(148, 163, 184, 0.2);
-        border-radius: 10px;
-        overflow: hidden;
-        margin: 0 auto;
-      }
-
-      .loader-progress-bar {
-        height: 100%;
-        background: linear-gradient(90deg, #a78bfa, #22d3ee, #34d399);
-        border-radius: 10px;
-        animation: loading 2s ease-in-out;
-      }
-
-      @keyframes loading {
-        0% { width: 0%; }
-        100% { width: 100%; }
-      }
-
-      /* Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0a0a0f;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: linear-gradient(180deg, #a78bfa 0%, #22d3ee 100%);
-        border-radius: 999px;
-      }
-
-      .gradient-text {
-        background: linear-gradient(135deg, #a78bfa 0%, #22d3ee 50%, #34d399 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-    
-      .card-glow-purple:hover {
-        box-shadow: 0 0 40px rgba(139, 92, 246, 0.3), 0 0 80px rgba(139, 92, 246, 0.1);
-      }
-    
-      .card-glow-cyan:hover {
-        box-shadow: 0 0 40px rgba(34, 211, 238, 0.3), 0 0 80px rgba(34, 211, 238, 0.1);
-      }
-    
-      .card-glow-emerald:hover {
-        box-shadow: 0 0 40px rgba(52, 211, 153, 0.3), 0 0 80px rgba(52, 211, 153, 0.1);
-      }
-    
-      .card-glow-slate:hover {
-        box-shadow: 0 0 40px rgba(148, 163, 184, 0.2), 0 0 80px rgba(148, 163, 184, 0.1);
-      }
-    
-      .floating {
-        animation: floating 3s ease-in-out infinite;
-      }
-    
-      @keyframes floating {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-      }
-    
-      .reveal-on-scroll {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-    
-      .reveal-on-scroll.revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    
-      .bg-grid {
-        background-image: 
-          linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
-        background-size: 50px 50px;
-      }
-    
-      .icon-box {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(34, 211, 238, 0.2) 100%);
-        border: 1px solid rgba(139, 92, 246, 0.3);
-      }
-    
-      .tech-tag {
-        background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-        border: 1px solid rgba(34, 211, 238, 0.2);
-        transition: all 0.3s ease;
-      }
-    
-      .tech-tag:hover {
-        background: linear-gradient(135deg, rgba(34, 211, 238, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
-        border-color: rgba(34, 211, 238, 0.4);
-        transform: translateY(-2px);
-      }
-
-      /* Hero Visual Zone */
-      .hero-glow {
-        box-shadow:
-          0 0 40px rgba(168, 85, 247, 0.7),
-          0 0 80px rgba(56, 189, 248, 0.55);
-        animation: heroGlow 4s ease-in-out infinite alternate;
-      }
-
-      @keyframes heroGlow {
-        0% {
-          box-shadow:
-            0 0 40px rgba(168, 85, 247, 0.7),
-            0 0 80px rgba(56, 189, 248, 0.45);
-        }
-        100% {
-          box-shadow:
-            0 0 70px rgba(168, 85, 247, 0.9),
-            0 0 130px rgba(56, 189, 248, 0.8);
-        }
-      }
-
-      .rotate-ring {
-        animation: rotateRing 14s linear infinite;
-        transform-origin: center;
-      }
-
-      @keyframes rotateRing {
-        from { transform: rotate(0deg) scale(1.02); }
-        to { transform: rotate(360deg) scale(1.02); }
-      }
-
-      .particle {
-        animation: floatParticle 10s ease-in-out infinite;
-      }
-
-      @keyframes floatParticle {
-        0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.1; }
-        50% { transform: translateY(-25px) translateX(10px) scale(1.1); opacity: 0.7; }
-        100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.15; }
-      }
-
-      .hero-tilt-inner {
-        transition: transform 0.25s ease-out;
-        transform-style: preserve-3d;
-      }
-
-      .glass-overlay {
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-      }
-
-      /* Reveal on scroll */
-      .reveal-on-scroll.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Timeline */
-      .timeline::before {
-        content: "";
-        position: absolute;
-        inset-block: 0.75rem;
-        left: 1.1rem;
-        width: 2px;
-        background: linear-gradient(180deg, #a78bfa 0%, #22d3ee 50%, #34d399 100%);
-      }
-
-      body.rtl .timeline::before {
-        left: auto;
-        right: 1.1rem;
-      }
-
-      @media (min-width: 768px) {
-        .timeline::before {
-          left: 50%;
-          transform: translateX(-50%);
-        }
-        
-        body.rtl .timeline::before {
-          left: 50%;
-          right: auto;
-        }
-      }
-
-      /* RTL adjustments */
-      body.rtl .skill-item:hover {
-        transform: translateX(-4px);
-      }
-
-      body.rtl .tool-item:hover {
-        transform: translateX(-4px);
-      }
-
-      body.rtl .text-right {
-        text-align: left;
-      }
-
-      body.rtl .md\\:text-right {
-        text-align: left;
-      }
-
-      /* Simple fade-in for hero subtitle */
-      @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      .fade-up {
-        animation: fadeUp 0.8s ease-out 0.2s both;
-      }
-
-      /* Skills Section Styles */
-      .skill-card {
-        background: linear-gradient(145deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.6) 100%);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        backdrop-filter: blur(20px);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .skill-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(139, 92, 246, 0.4);
-      }
-
-      .skill-card.frontend:hover {
-        box-shadow: 0 25px 60px -15px rgba(139, 92, 246, 0.3);
-      }
-
-      .skill-card.backend:hover {
-        box-shadow: 0 25px 60px -15px rgba(34, 211, 238, 0.3);
-      }
-
-      .skill-card.tools:hover {
-        box-shadow: 0 25px 60px -15px rgba(52, 211, 153, 0.3);
-      }
-
-      .skill-icon-wrapper {
-        position: relative;
-        width: 56px;
-        height: 56px;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-      }
-
-      .skill-icon-wrapper::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        border-radius: 18px;
-        background: linear-gradient(135deg, var(--icon-color-1), var(--icon-color-2));
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: -1;
-      }
-
-      .skill-item:hover .skill-icon-wrapper::before {
-        opacity: 1;
-      }
-
-      .skill-bar-container {
-        height: 6px;
-        background: rgba(30, 41, 59, 0.8);
-        border-radius: 999px;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .skill-bar-fill {
-        height: 100%;
-        border-radius: 999px;
-        position: relative;
-        transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .skill-bar-fill::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-        animation: shimmer 2s infinite;
-      }
-
-      @keyframes shimmer {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
-      }
-
-      .skill-item {
-        padding: 16px;
-        border-radius: 16px;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.08);
-        transition: all 0.3s ease;
-      }
-
-      .skill-item:hover {
-        background: rgba(30, 41, 59, 0.6);
-        border-color: rgba(148, 163, 184, 0.15);
-        transform: translateX(4px);
-      }
-
-      .tech-icon {
-        font-size: 24px;
-      }
-
-      .section-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 20px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(34, 211, 238, 0.15) 100%);
-        border: 1px solid rgba(139, 92, 246, 0.3);
-        font-size: 12px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        color: #c4b5fd;
-      }
-
-      .section-badge::before {
-        content: '';
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #a78bfa, #22d3ee);
-        animation: pulse 2s infinite;
-      }
-
-      @keyframes pulse {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.7; transform: scale(1.1); }
-      }
-
-      .card-header-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .card-header-icon::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: inherit;
-        filter: blur(20px);
-        opacity: 0.5;
-      }
-
-      .tool-item {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 14px 16px;
-        border-radius: 16px;
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.5) 100%);
-        border: 1px solid rgba(148, 163, 184, 0.08);
-        transition: all 0.3s ease;
-      }
-
-      .tool-item:hover {
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
-        border-color: rgba(52, 211, 153, 0.3);
-        transform: translateX(4px);
-      }
-
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        margin-top: 24px;
-        padding-top: 24px;
-        border-top: 1px solid rgba(148, 163, 184, 0.1);
-      }
-
-      .stat-item {
-        text-align: center;
-        padding: 12px;
-        border-radius: 12px;
-        background: rgba(15, 23, 42, 0.5);
-      }
-    </style>
+    <!-- External Certificates Styles -->
+    <!-- <link rel="stylesheet" href="certificates.css" /> -->
+    <link rel="stylesheet" href="css.css" />
+
+    <style></style>
   </head>
   <body>
     <!-- Loading Screen -->
@@ -610,6 +55,7 @@
           <a href="#skills" class="nav-link hover:text-cyan-300 transition-colors" data-section="skills" data-en="Skills" data-ar="المهارات">Skills</a>
           <a href="#timeline" class="nav-link hover:text-cyan-300 transition-colors" data-section="timeline" data-en="Timeline" data-ar="المسار">Timeline</a>
           <a href="#projects" class="nav-link hover:text-cyan-300 transition-colors" data-section="projects" data-en="Projects" data-ar="المشاريع">Projects</a>
+          <a href="#certificates" class="nav-link hover:text-cyan-300 transition-colors" data-section="certificates" data-en="Certificates" data-ar="الشهادات">Certificates</a>
           <a href="#services" class="nav-link hover:text-cyan-300 transition-colors" data-section="services" data-en="Services" data-ar="الخدمات">Services</a>
           <a href="#testimonials" class="nav-link hover:text-cyan-300 transition-colors" data-section="testimonials" data-en="Testimonials" data-ar="الآراء">Testimonials</a>
           <button id="langToggle" class="lang-toggle" title="Switch Language">
@@ -631,6 +77,7 @@
           <a href="#skills" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-slate-800/50 hover:text-cyan-300 transition-all" data-section="skills" data-en="Skills" data-ar="المهارات">Skills</a>
           <a href="#timeline" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-slate-800/50 hover:text-cyan-300 transition-all" data-section="timeline" data-en="Timeline" data-ar="المسار">Timeline</a>
           <a href="#projects" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-slate-800/50 hover:text-cyan-300 transition-all" data-section="projects" data-en="Projects" data-ar="المشاريع">Projects</a>
+          <a href="#certificates" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-slate-800/50 hover:text-cyan-300 transition-all" data-section="certificates" data-en="Certificates" data-ar="الشهادات">Certificates</a>
           <a href="#services" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-slate-800/50 hover:text-cyan-300 transition-all" data-section="services" data-en="Services" data-ar="الخدمات">Services</a>
           <a href="#testimonials" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-slate-800/50 hover:text-cyan-300 transition-all" data-section="testimonials" data-en="Testimonials" data-ar="الآراء">Testimonials</a>
           <button id="langToggleMobile" class="lang-toggle mt-2 justify-center" title="Switch Language">
@@ -699,9 +146,9 @@
               <button id="viewProjectsBtn" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700/80 bg-slate-900/60 px-5 py-2.5 text-xs font-medium text-slate-100 shadow-md shadow-slate-900/60 backdrop-blur hover:border-cyan-400/70 hover:text-cyan-200 transition">
                 View My Projects
               </button>
-              <button id="downloadCvBtn" class="inline-flex items-center justify-center gap-2 rounded-full border border-purple-500/40 bg-purple-950/40 px-5 py-2.5 text-xs font-medium text-purple-100 shadow-md shadow-purple-900/60 backdrop-blur hover:border-purple-300 hover:text-purple-200 transition">
+              <!-- <button id="downloadCvBtn" class="inline-flex items-center justify-center gap-2 rounded-full border border-purple-500/40 bg-purple-950/40 px-5 py-2.5 text-xs font-medium text-purple-100 shadow-md shadow-purple-900/60 backdrop-blur hover:border-purple-300 hover:text-purple-200 transition">
                 Download CV
-              </button>
+              </button> -->
             </div>
           </div>
 
@@ -717,7 +164,7 @@
                   <div class="relative h-full w-full rounded-3xl bg-gradient-to-br from-purple-500 via-slate-900 to-cyan-400 shadow-xl shadow-slate-950/80">
                     <div class="absolute inset-[3px] rounded-3xl bg-slate-950/90 flex items-center justify-center h-full w-full">
                       <div class="bg-gray-200 border-2 border-dashed rounded-3xl h-full w-full flex items-center justify-center">
-                        <img src="7048b30c361e2f0418300d69d6faaca3.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 1.5rem;">
+                        <img src="img/7048b30c361e2f0418300d69d6faaca3.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 1.5rem;">
                       </div>
                     </div>
                   </div>
@@ -899,9 +346,8 @@
         </div>
       </section>
 
-      <!-- Skills Section - Redesigned -->
+      <!-- Skills Section -->
       <section id="skills" class="relative border-t border-slate-800/70 overflow-hidden">
-        <!-- Background Effects -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
           <div class="absolute top-1/4 left-0 w-[500px] h-[500px] bg-purple-500/8 rounded-full blur-[100px]"></div>
           <div class="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-[100px]"></div>
@@ -909,7 +355,6 @@
         </div>
 
         <div class="relative mx-auto max-w-6xl px-4 py-20 lg:px-6 lg:py-28">
-          <!-- Section Header -->
           <div class="text-center mb-16" data-aos="fade-up">
             <div class="section-badge mb-6">Technical Expertise</div>
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-50 leading-tight">
@@ -925,7 +370,6 @@
           <div class="grid gap-8 lg:grid-cols-3">
             <!-- Front-end Card -->
             <div class="skill-card frontend rounded-3xl p-6 lg:p-8" data-aos="fade-up" data-aos-delay="100">
-              <!-- Card Header -->
               <div class="flex items-start justify-between mb-8">
                 <div>
                   <h3 class="text-xl font-bold text-white mb-1">Front-End</h3>
@@ -938,7 +382,6 @@
                 </div>
               </div>
 
-              <!-- Skills List -->
               <div class="space-y-4">
                 <!-- HTML5 -->
                 <div class="skill-item" style="--icon-color-1: #f97316; --icon-color-2: #ea580c;">
@@ -1036,7 +479,6 @@
                 </div>
               </div>
 
-              <!-- Stats -->
               <div class="stats-grid">
                 <div class="stat-item">
                   <p class="text-xl font-bold text-purple-400">5+</p>
@@ -1055,7 +497,6 @@
 
             <!-- Back-end Card -->
             <div class="skill-card backend rounded-3xl p-6 lg:p-8" data-aos="fade-up" data-aos-delay="200">
-              <!-- Card Header -->
               <div class="flex items-start justify-between mb-8">
                 <div>
                   <h3 class="text-xl font-bold text-white mb-1">Back-End</h3>
@@ -1068,7 +509,6 @@
                 </div>
               </div>
 
-              <!-- Skills List -->
               <div class="space-y-4">
                 <!-- PHP -->
                 <div class="skill-item" style="--icon-color-1: #6366f1; --icon-color-2: #4f46e5;">
@@ -1170,7 +610,6 @@
                 </div>
               </div>
 
-              <!-- Stats -->
               <div class="stats-grid">
                 <div class="stat-item">
                   <p class="text-xl font-bold text-cyan-400">5+</p>
@@ -1189,7 +628,6 @@
 
             <!-- Tools Card -->
             <div class="skill-card tools rounded-3xl p-6 lg:p-8" data-aos="fade-up" data-aos-delay="300">
-              <!-- Card Header -->
               <div class="flex items-start justify-between mb-8">
                 <div>
                   <h3 class="text-xl font-bold text-white mb-1">Tools & Software</h3>
@@ -1203,9 +641,7 @@
                 </div>
               </div>
 
-              <!-- Tools List -->
               <div class="space-y-3">
-                <!-- Git & GitHub -->
                 <div class="tool-item">
                   <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500/20 to-red-500/10 border border-orange-500/30">
                     <i class="devicon-git-plain colored tech-icon"></i>
@@ -1217,7 +653,6 @@
                   <i class="devicon-github-original text-slate-500 text-xl"></i>
                 </div>
 
-                <!-- VS Code -->
                 <div class="tool-item">
                   <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/30">
                     <i class="devicon-vscode-plain colored tech-icon"></i>
@@ -1228,7 +663,6 @@
                   </div>
                 </div>
 
-                <!-- XAMPP -->
                 <div class="tool-item">
                   <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-500/10 border border-orange-500/30">
                     <i class="devicon-apache-plain colored tech-icon"></i>
@@ -1239,7 +673,6 @@
                   </div>
                 </div>
 
-                <!-- Postman -->
                 <div class="tool-item">
                   <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/30">
                     <i class="devicon-postman-plain colored tech-icon"></i>
@@ -1250,7 +683,6 @@
                   </div>
                 </div>
 
-                <!-- Chrome DevTools -->
                 <div class="tool-item">
                   <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-500/20 to-green-500/10 border border-yellow-500/30">
                     <i class="devicon-chrome-plain colored tech-icon"></i>
@@ -1262,7 +694,6 @@
                 </div>
               </div>
 
-              <!-- Stats -->
               <div class="stats-grid">
                 <div class="stat-item">
                   <p class="text-xl font-bold text-emerald-400">5+</p>
@@ -1297,7 +728,6 @@
 
           <div class="mt-10">
             <ol class="relative timeline space-y-6 md:space-y-10">
-              <!-- Timeline items -->
               <li class="relative flex flex-col gap-3 md:flex-row md:items-start" data-aos="fade-up-right">
                 <div class="relative z-10 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full border border-purple-400/80 bg-slate-950 text-[11px] font-semibold text-purple-300 shadow-md shadow-purple-500/40 md:mt-0">24</div>
                 <div class="md:w-1/2 md:pr-6 md:text-right">
@@ -1391,7 +821,7 @@
             <article data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80 hover:border-purple-500/30 transition-all duration-300">
               <div class="relative h-40 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
                 <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
-                  <img style="width: 100%; height: 100%; object-fit: cover;" src="Screenshot 2025-11-26 194713.png" alt="Car Store">
+                  <img style="width: 100%; height: 100%; object-fit: cover;" src="img/Screenshot 2025-11-26 194713.png" alt="Car Store">
                 </div>
                 <div class="relative z-10 flex h-full items-end justify-between px-4 pb-3">
                   <div>
@@ -1414,7 +844,6 @@
                   </div>
                 </div>
                 <div class="mt-2 flex gap-2 pt-1">
-                  <!-- <a href="https://github.com/omar6940000/car-website.git" class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] font-medium text-slate-200 hover:border-cyan-400 hover:text-cyan-200 transition">GitHub</a> -->
                   <a href="https://car-website-omega-three.vercel.app/" class="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-2 py-1.5 text-[11px] font-semibold text-slate-950 hover:from-purple-400 hover:to-cyan-300 transition">Live Demo</a>
                 </div>
               </div>
@@ -1424,8 +853,8 @@
             <article data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80 hover:border-purple-500/30 transition-all duration-300">
               <div class="relative h-40 overflow-hidden bg-gradient-to-br from-rose-500/40 via-slate-950 to-amber-400/30">
                 <div class="relative z-10 flex h-full items-end justify-between px-4 pb-3">
-                                  <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
-                  <img style="width: 100%; height: 100%; object-fit: cover;" src="Screenshot 2026-01-01 044842.png" alt="Car Store">
+                  <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
+                  <img style="width: 100%; height: 100%; object-fit: cover;" src="img/Screenshot 2026-01-01 044842.png" alt="Car Store">
                 </div>
 
                   <div>
@@ -1448,22 +877,21 @@
                   </div>
                 </div>
                 <div class="mt-2 flex gap-2 pt-1">
-                  <!-- <a href="#" class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] font-medium text-slate-200 hover:border-cyan-400 hover:text-cyan-200 transition">GitHub</a> -->
                   <a href="https://cafe-restaurant2.vercel.app/" class="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-2 py-1.5 text-[11px] font-semibold text-slate-950 hover:from-purple-400 hover:to-cyan-300 transition">Live Demo</a>
                 </div>
               </div>
             </article>
 
-            <!-- Real Estate -->
-             <article data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80 hover:border-purple-500/30 transition-all duration-300">
+            <!-- Hotel -->
+            <article data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80 hover:border-purple-500/30 transition-all duration-300">
               <div class="relative h-40 overflow-hidden bg-gradient-to-br from-sky-500/40 via-slate-950 to-purple-500/40">
                 <div class="relative z-10 flex h-full items-end justify-between px-4 pb-3">
-                                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
-                  <img style="width: 100%; height: 100%; object-fit: cover;" src="Screenshot 2026-03-31 170350.png" alt="Car Store">
+                  <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
+                  <img style="width: 100%; height: 100%; object-fit: cover;" src="img/Screenshot 2026-03-31 170350.png" alt="Car Store">
                 </div>
                   <div>
-                    <span class="rounded-full bg-slate-950/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-200">Dental clinic</span>
-                    <p class="mt-2 text-sm font-semibold text-slate-50">Dental clinic Website</p>
+                    <span class="rounded-full bg-slate-950/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-200">Hotel</span>
+                    <p class="mt-2 text-sm font-semibold text-slate-50">Hotel Website</p>
                   </div>
                   <span class="rounded-xl bg-slate-950/70 px-2 py-1 text-[10px] text-slate-300">Listings & filtering</span>
                 </div>
@@ -1481,19 +909,17 @@
                   </div>
                 </div>
                 <div class="mt-2 flex gap-2 pt-1">
-                  <!-- <a href="#" class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] font-medium text-slate-200 hover:border-cyan-400 hover:text-cyan-200 transition">GitHub</a> -->
                   <a href="https://hotel-plum-nine.vercel.app/" class="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-2 py-1.5 text-[11px] font-semibold text-slate-950 hover:from-purple-400 hover:to-cyan-300 transition">Live Demo</a>
                 </div>
               </div>
             </article>
 
-
-            <!-- Dental clinic -->
+            <!-- Dental Clinic -->
             <article data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80 hover:border-purple-500/30 transition-all duration-300">
               <div class="relative h-40 overflow-hidden bg-gradient-to-br from-sky-500/40 via-slate-950 to-purple-500/40">
                 <div class="relative z-10 flex h-full items-end justify-between px-4 pb-3">
-                                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
-                  <img style="width: 100%; height: 100%; object-fit: cover;" src="Screenshot 2026-01خخخخ01 045651.png" alt="Car Store">
+                  <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
+                  <img style="width: 100%; height: 100%; object-fit: cover;" src="img/Screenshot 2026-01خخخخ01 045651.png" alt="Dental clinic">
                 </div>
                   <div>
                     <span class="rounded-full bg-slate-950/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-200">Dental clinic</span>
@@ -1515,23 +941,21 @@
                   </div>
                 </div>
                 <div class="mt-2 flex gap-2 pt-1">
-                  <!-- <a href="#" class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] font-medium text-slate-200 hover:border-cyan-400 hover:text-cyan-200 transition">GitHub</a> -->
                   <a href="https://clinic2-alpha.vercel.app/" class="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-2 py-1.5 text-[11px] font-semibold text-slate-950 hover:from-purple-400 hover:to-cyan-300 transition">Live Demo</a>
                 </div>
               </div>
             </article>
 
-
-            <!-- Markting -->
+            <!-- Marketing -->
             <article data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80 hover:border-purple-500/30 transition-all duration-300">
               <div class="relative h-40 overflow-hidden bg-gradient-to-br from-sky-500/40 via-slate-950 to-purple-500/40">
                 <div class="relative z-10 flex h-full items-end justify-between px-4 pb-3">
-                                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
-                  <img style="width: 100%; height: 100%; object-fit: cover;" src="Screenshot 2026.png" alt="Car Store">
+                  <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
+                  <img style="width: 100%; height: 100%; object-fit: cover;" src="img/Screenshot 2026.png" alt="Marketing">
                 </div>
                   <div>
-                    <span class="rounded-full bg-slate-950/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-200">Markting</span>
-                    <p class="mt-2 text-sm font-semibold text-slate-50">Markting</p>
+                    <span class="rounded-full bg-slate-950/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-200">Marketing</span>
+                    <p class="mt-2 text-sm font-semibold text-slate-50">Marketing</p>
                   </div>
                   <span class="rounded-xl bg-slate-950/70 px-2 py-1 text-[10px] text-slate-300">Listings & filtering</span>
                 </div>
@@ -1549,20 +973,17 @@
                   </div>
                 </div>
                 <div class="mt-2 flex gap-2 pt-1">
-                  <!-- <a href="#" class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] font-medium text-slate-200 hover:border-cyan-400 hover:text-cyan-200 transition">GitHub</a> -->
                   <a href="https://marketing-ten-amber.vercel.app/" class="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-2 py-1.5 text-[11px] font-semibold text-slate-950 hover:from-purple-400 hover:to-cyan-300 transition">Live Demo</a>
                 </div>
               </div>
             </article>
 
-
-
             <!-- E-Commerce -->
             <article data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/80 hover:border-purple-500/30 transition-all duration-300">
               <div class="relative h-40 overflow-hidden bg-gradient-to-br from-sky-500/40 via-slate-950 to-purple-500/40">
                 <div class="relative z-10 flex h-full items-end justify-between px-4 pb-3">
-                                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
-                  <img style="width: 100%; height: 100%; object-fit: cover;" src="Screenshot 2026-04-02 163840.png" alt="Car Store">
+                  <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(168,85,247,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.5),transparent_55%)] opacity-80">
+                  <img style="width: 100%; height: 100%; object-fit: cover;" src="img/Screenshot 2026-04-02 163840.png" alt="E-Commerce">
                 </div>
                   <div>
                     <span class="rounded-full bg-slate-950/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-200">E-Commerce</span>
@@ -1583,57 +1004,125 @@
                   </div>
                 </div>
                 <div class="mt-2 flex gap-2 pt-1">
-                  <!-- <a href="#" class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] font-medium text-slate-200 hover:border-cyan-400 hover:text-cyan-200 transition">GitHub</a> -->
                   <a href="https://e-commerce-alpha-two-anvsaihs4f.vercel.app/" class="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-2 py-1.5 text-[11px] font-semibold text-slate-950 hover:from-purple-400 hover:to-cyan-300 transition">Live Demo</a>
                 </div>
               </div>
             </article>
-
-            <!-- Coming Soon Cards -->
-            <!-- <article data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-dashed border-slate-700/80 shadow-lg shadow-slate-950/60 hover:border-cyan-500/30 transition-all duration-300">
-              <div class="relative h-40 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(96,165,250,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(236,72,153,0.5),transparent_55%)] opacity-70"></div>
-                <div class="relative z-10 flex h-full items-center justify-center">
-                  <span class="rounded-full bg-slate-950/80 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-200">Coming Soon</span>
-                </div>
-              </div>
-              <div class="flex flex-1 flex-col gap-3 px-4 py-4 text-xs text-slate-300">
-                <p class="text-sm font-semibold text-slate-50">Phone Store Website</p>
-                <p>Planned e-commerce style store focused on smartphones and comparisons.</p>
-                <p class="mt-1 text-[11px] text-cyan-300">Status: Design & architecture phase</p>
-              </div>
-            </article> -->
-
-            <!-- <article data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-dashed border-slate-700/80 shadow-lg shadow-slate-950/60 hover:border-pink-500/30 transition-all duration-300">
-              <div class="relative h-40 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(244,114,182,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(52,211,153,0.5),transparent_55%)] opacity-70"></div>
-                <div class="relative z-10 flex h-full items-center justify-center">
-                  <span class="rounded-full bg-slate-950/80 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-200">Coming Soon</span>
-                </div>
-              </div>
-              <div class="flex flex-1 flex-col gap-3 px-4 py-4 text-xs text-slate-300">
-                <p class="text-sm font-semibold text-slate-50">Clothes Store Website</p>
-                <p>Planned online clothing store with product collections and checkout flow.</p>
-                <p class="mt-1 text-[11px] text-cyan-300">Status: Wireframing & research</p>
-              </div>
-            </article> -->
-
-            <!-- <article data-aos="zoom-in-up" class="flex flex-col overflow-hidden rounded-2xl border border-dashed border-slate-700/80 shadow-lg shadow-slate-950/60 hover:border-emerald-500/30 transition-all duration-300">
-              <div class="relative h-40 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(52,211,153,0.5),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(168,85,247,0.5),transparent_55%)] opacity-70"></div>
-                <div class="relative z-10 flex h-full items-center justify-center">
-                  <span class="rounded-full bg-slate-950/80 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-200">Coming Soon</span>
-                </div>
-              </div>
-              <div class="flex flex-1 flex-col gap-3 px-4 py-4 text-xs text-slate-300">
-                <p class="text-sm font-semibold text-slate-50">Decoration Company</p>
-                <p>Stylish showcase website with projects gallery and client testimonials.</p>
-                <p class="mt-1 text-[11px] text-cyan-300">Status: Planning phase</p>
-              </div>
-            </article> -->
           </div>
         </div>
       </section>
+
+      <!-- ============================================ -->
+      <!-- CERTIFICATES SECTION — New                   -->
+      <!-- ============================================ -->
+      <section id="certificates" class="relative border-t border-slate-800/70 overflow-hidden">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <div class="absolute top-1/3 right-0 w-[400px] h-[400px] bg-purple-500/8 rounded-full blur-[100px]"></div>
+          <div class="absolute bottom-1/3 left-0 w-[400px] h-[400px] bg-cyan-500/8 rounded-full blur-[100px]"></div>
+        </div>
+
+        <div class="relative mx-auto max-w-6xl px-4 py-20 lg:px-6 lg:py-28">
+          <!-- Section Header -->
+          <div class="text-center mb-16" data-aos="fade-up">
+            <div class="section-badge mb-6">
+              Achievements
+              <span class="cert-count-badge" id="certCountBadge" style="display:none;">0</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-50 leading-tight">
+              Certificates & Awards
+            </h2>
+            <p class="mx-auto mt-4 max-w-2xl text-slate-400 text-sm md:text-base leading-relaxed">
+              Upload your course completion certificates, diplomas, and achievement badges here. 
+              They'll be displayed in an elegant gallery with lightbox viewing.
+            </p>
+            <div class="mt-6 mx-auto w-24 h-1 bg-gradient-to-r from-purple-500 via-cyan-400 to-emerald-400 rounded-full"></div>
+          </div>
+
+
+          <!-- Certificate Gallery Grid -->
+          <div id="certificateGrid" class="certificate-grid" data-aos="fade-up" data-aos-delay="200">
+            
+            <!-- Certificate 1 -->
+            <div class="certificate-card" style="animation-delay: 0.1s;">
+              <div class="certificate-image-wrapper" data-lightbox-index="0">
+                <img src="img/0eb4c362d9ff4823a63ba79935c9593c.jpg" alt="Full Stack Course" loading="lazy">
+                <div class="certificate-image-overlay">
+                  <div class="certificate-overlay-actions">
+                    <button class="cert-action-btn view-btn">View</button>
+                    <!-- <a href="0eb4c362d9ff4823a63ba79935c9593c.jpg" download="Full_Stack_Certificate" class="cert-action-btn download-btn">Save</a> -->
+                  </div>
+                </div>
+              </div>
+              <div class="certificate-info">
+                <p class="certificate-name">Full Stack Course - Creativo Academy</p>
+                <div class="certificate-meta">
+                  <span class="certificate-date">Mar 30, 2025</span>
+                  <span class="certificate-size">Official</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Certificate 2 -->
+            <div class="certificate-card" style="animation-delay: 0.2s;">
+              <div class="certificate-image-wrapper" data-lightbox-index="1">
+                <img src="img/5083df951018436db959227bcc0c1955.jpg" alt="Experience Arabic" loading="lazy">
+                <div class="certificate-image-overlay">
+                  <div class="certificate-overlay-actions">
+                    <button class="cert-action-btn view-btn">View</button>
+                    <!-- <a href="5083df951018436db959227bcc0c1955.jpg" download="Experience_Arabic" class="cert-action-btn download-btn">Save</a> -->
+                  </div>
+                </div>
+              </div>
+              <div class="certificate-info">
+                <p class="certificate-name">Experience Certificate (Arabic)</p>
+                <div class="certificate-meta">
+                  <span class="certificate-date">2025</span>
+                  <span class="certificate-size">Official</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Certificate 3 -->
+            <div class="certificate-card" style="animation-delay: 0.3s;">
+              <div class="certificate-image-wrapper" data-lightbox-index="2">
+                <img src="img/f123dfab1cfd4ff29c4fc88ae9a1d84b.jpg" alt="Experience English" loading="lazy">
+                <div class="certificate-image-overlay">
+                  <div class="certificate-overlay-actions">
+                    <button class="cert-action-btn view-btn">View</button>
+                    <!-- <a href="f123dfab1cfd4ff29c4fc88ae9a1d84b.jpg" download="Experience_English" class="cert-action-btn download-btn">Save</a> -->
+                  </div>
+                </div>
+              </div>
+              <div class="certificate-info">
+                <p class="certificate-name">Experience Certificate (English)</p>
+                <div class="certificate-meta">
+                  <span class="certificate-date">Sep 14, 2025</span>
+                  <span class="certificate-size">Official</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Lightbox (for Certificates) -->
+      <div class="cert-lightbox" id="certLightbox">
+        <button class="cert-lightbox-close" id="certLightboxClose" aria-label="Close lightbox">✕</button>
+        <button class="cert-lightbox-nav cert-lightbox-prev" id="certLightboxPrev" aria-label="Previous certificate">◀</button>
+        <div class="cert-lightbox-content">
+          <img id="certLightboxImg" src="" alt="Certificate preview" />
+        </div>
+        <button class="cert-lightbox-nav cert-lightbox-next" id="certLightboxNext" aria-label="Next certificate">▶</button>
+        <div class="cert-lightbox-counter" id="certLightboxCounter">1 / 1</div>
+      </div>
+
+      <!-- Toast Notification -->
+      <div class="cert-toast" id="certToast">
+        <span class="cert-toast-icon success" id="certToastIcon">✓</span>
+        <span id="certToastMessage">Certificate uploaded!</span>
+      </div>
 
       <!-- Services Section -->
       <section id="services" class="relative border-t border-slate-800/70 bg-gradient-to-b from-slate-950/80 to-slate-950/40">
@@ -1727,7 +1216,7 @@
                   <figcaption class="flex items-center justify-between text-xs text-slate-400">
                     <div>
                       <p class="font-semibold text-slate-100">Future Client</p>
-                      <p>CEO, Placeholder Company</p>
+                      <p>CEO, PlaceholderCompany</p>
                     </div>
                     <span class="rounded-full bg-slate-900 px-2 py-1 text-[11px] text-emerald-300">Placeholder</span>
                   </figcaption>
@@ -1811,12 +1300,7 @@
                     <span class="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/20 text-[15px]">🟢</span>
                     <span>WhatsApp</span>
                   </a>
-
-              <!--<a href="https://github.com/omar6940000" target="_blank" class="flex items-center gap-3 text-slate-200 hover:text-slate-50 transition">
-                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-[14px]">🐱</span>
-                    <span>GitHub Profile</span>
-                </a>-->
-               </div>
+                </div>
               </div>
 
               <div class="rounded-2xl border border-slate-800 bg-slate-950/80 p-5 shadow-xl shadow-slate-950/80 text-xs text-slate-300">
@@ -1848,11 +1332,11 @@
             <div class="flex flex-wrap gap-3">
               <a href="#hero" class="hover:text-cyan-300 transition">Home</a>
               <a href="#projects" class="hover:text-cyan-300 transition">Projects</a>
+              <a href="#certificates" class="hover:text-cyan-300 transition">Certificates</a>
               <a href="#services" class="hover:text-cyan-300 transition">Services</a>
               <a href="#contact" class="hover:text-cyan-300 transition">Contact</a>
             </div>
             <div class="flex items-center gap-2">
-           <!--   <a href="https://github.com/omar6940000" target="_blank" class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-700 bg-slate-950 text-[13px] text-slate-200 hover:border-slate-400 transition" aria-label="GitHub">🐱</a>-->
               <a href="https://linkedin.com" target="_blank" class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-700 bg-slate-950 text-[13px] text-slate-200 hover:border-sky-400 transition" aria-label="LinkedIn">in</a>
               <a href="https://wa.me/201280402765" target="_blank" class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-700 bg-slate-950 text-[13px] text-slate-200 hover:border-emerald-400 transition" aria-label="WhatsApp">☎</a>
             </div>
@@ -1864,317 +1348,9 @@
     <!-- JavaScript -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <script>
-      // Loading Screen
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          document.getElementById('loader').classList.add('hidden');
-        }, 2200);
-      });
+    <!-- Certificates JS -->
+    <script src="js.js"></script>
 
-      // Typing animation for the title
-      const titles = [
-        "Full-Stack Web Developer",
-        "Front End Developer", 
-        "Back End Developer"
-      ];
-      
-      let currentTitleIndex = 0;
-      let currentCharIndex = 0;
-      let isDeleting = false;
-      let typingSpeed = 100;
-      let deletingSpeed = 50;
-      let pauseTime = 2000;
-      
-      const animatedTitleElement = document.getElementById('animatedTitle');
-      
-      function typeWriter() {
-        const currentTitle = titles[currentTitleIndex];
-        
-        if (!isDeleting) {
-          animatedTitleElement.textContent = currentTitle.substring(0, currentCharIndex + 1);
-          currentCharIndex++;
-          
-          if (currentCharIndex === currentTitle.length) {
-            isDeleting = true;
-            setTimeout(typeWriter, pauseTime);
-            return;
-          }
-        } else {
-          animatedTitleElement.textContent = currentTitle.substring(0, currentCharIndex - 1);
-          currentCharIndex--;
-          
-          if (currentCharIndex === 0) {
-            isDeleting = false;
-            currentTitleIndex = (currentTitleIndex + 1) % titles.length;
-          }
-        }
-        
-        const speed = isDeleting ? deletingSpeed : typingSpeed;
-        setTimeout(typeWriter, speed);
-      }
-      
-      typeWriter();
-
-      // Mobile Menu
-      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      
-      mobileMenuBtn.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-      });
-
-      // Close mobile menu when clicking a link
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-        });
-      });
-
-
-      function toggleLanguage() {
-        currentLang = currentLang === 'en' ? 'ar' : 'en';
-        const t = translations[currentLang];
-        
-        // Toggle RTL
-        document.body.classList.toggle('rtl', currentLang === 'ar');
-        document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
-        
-        // Update language button text
-        document.getElementById('langText').textContent = t.langBtn;
-        document.querySelector('.lang-text-mobile').textContent = t.langBtn;
-        
-        // Update nav links
-        document.querySelectorAll('[data-en][data-ar]').forEach(el => {
-          el.textContent = currentLang === 'ar' ? el.dataset.ar : el.dataset.en;
-        });
-        
-        // Update hero section
-        const heroGreeting = document.querySelector('.font-ar');
-        if (heroGreeting) heroGreeting.textContent = t.heroGreeting;
-        
-        // Update buttons
-        const hireMeBtn = document.getElementById('hireMeBtn');
-        const viewProjectsBtn = document.getElementById('viewProjectsBtn');
-        const downloadCvBtn = document.getElementById('downloadCvBtn');
-        
-        if (hireMeBtn) hireMeBtn.textContent = t.hireMe;
-        if (viewProjectsBtn) viewProjectsBtn.textContent = t.viewProjects;
-        if (downloadCvBtn) downloadCvBtn.textContent = t.downloadCv;
-        
-        // Update section badges
-        document.querySelectorAll('.section-badge').forEach((badge, index) => {
-          const badges = ['aboutBadge', 'skillsBadge', 'projectsBadge', 'servicesBadge', 'testimonialsBadge', 'contactBadge'];
-          if (badges[index]) badge.textContent = t[badges[index]];
-        });
-      }
-
-      document.getElementById('langToggle').addEventListener('click', toggleLanguage);
-      document.getElementById('langToggleMobile').addEventListener('click', toggleLanguage);
-
-      // Active Nav Link on Scroll
-      function updateActiveNavLink() {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        
-        let currentSection = '';
-        const scrollPos = window.scrollY + 150;
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          
-          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            currentSection = section.getAttribute('id');
-          }
-        });
-        
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.dataset.section === currentSection) {
-            link.classList.add('active');
-          }
-        });
-        
-        mobileNavLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.dataset.section === currentSection) {
-            link.classList.add('active');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', updateActiveNavLink);
-      window.addEventListener('load', updateActiveNavLink);
-
-      document.addEventListener("DOMContentLoaded", () => {
-        // Set current year in footer
-        const yearSpan = document.getElementById("year");
-        if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-
-        // Smooth scroll buttons in hero
-        const hireMeBtn = document.getElementById("hireMeBtn");
-        const viewProjectsBtn = document.getElementById("viewProjectsBtn");
-        const downloadCvBtn = document.getElementById("downloadCvBtn");
-
-        if (hireMeBtn) {
-          hireMeBtn.addEventListener("click", () => {
-            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-          });
-        }
-
-        if (viewProjectsBtn) {
-          viewProjectsBtn.addEventListener("click", () => {
-            document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-          });
-        }
-
-        if (downloadCvBtn) {
-          downloadCvBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            alert("CV download will be available soon.");
-          });
-        }
-
-        // Hero 3D tilt effect
-        const heroVisual = document.getElementById("heroVisual");
-        const heroVisualInner = document.getElementById("heroVisualInner");
-        if (heroVisual && heroVisualInner) {
-          const maxRotate = 12;
-          heroVisual.addEventListener("mousemove", (e) => {
-            const rect = heroVisual.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateY = ((x - centerX) / centerX) * maxRotate;
-            const rotateX = -((y - centerY) / centerY) * maxRotate;
-            heroVisualInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-          });
-
-          heroVisual.addEventListener("mouseleave", () => {
-            heroVisualInner.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0)";
-          });
-        }
-
-        // Reveal on scroll
-        const revealElements = document.querySelectorAll(".reveal-on-scroll");
-        if ("IntersectionObserver" in window) {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("visible");
-                  observer.unobserve(entry.target);
-                }
-              });
-            },
-            { threshold: 0.15 }
-          );
-          revealElements.forEach((el) => observer.observe(el));
-        } else {
-          revealElements.forEach((el) => el.classList.add("visible"));
-        }
-
-        // Animate skill bars when in view
-        const skillBars = document.querySelectorAll("[data-skill-bar]");
-        if ("IntersectionObserver" in window && skillBars.length) {
-          const skillObserver = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  const el = entry.target;
-                  const value = el.getAttribute("data-skill-bar");
-                  if (value) {
-                    setTimeout(() => {
-                      el.style.width = value + "%";
-                    }, 200);
-                  }
-                  skillObserver.unobserve(el);
-                }
-              });
-            },
-            { threshold: 0.3 }
-          );
-          skillBars.forEach((bar) => skillObserver.observe(bar));
-        } else {
-          skillBars.forEach((bar) => {
-            const value = bar.getAttribute("data-skill-bar");
-            if (value) bar.style.width = value + "%";
-          });
-        }
-
-        // Contact form
-        const contactForm = document.getElementById("contactForm");
-        const contactStatus = document.getElementById("contactStatus");
-        if (contactForm && contactStatus) {
-          contactForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            contactStatus.textContent = "Thank you! This is a demo form — your message is not actually sent.";
-            contactStatus.classList.remove("text-red-400");
-            contactStatus.classList.add("text-emerald-300");
-            contactForm.reset();
-          });
-        }
-
-        // Testimonials slider
-        const slides = Array.from(document.querySelectorAll(".testimonial-slide"));
-        const prevBtn = document.getElementById("prevTestimonial");
-        const nextBtn = document.getElementById("nextTestimonial");
-        const dots = Array.from(document.querySelectorAll("[data-testimonial-dot]"));
-        let currentSlide = 0;
-        let sliderInterval;
-
-        const showSlide = (index) => {
-          if (!slides.length) return;
-          currentSlide = (index + slides.length) % slides.length;
-          slides.forEach((slide, i) => {
-            slide.classList.toggle("hidden", i !== currentSlide);
-          });
-          dots.forEach((dot, i) => {
-            if (i === currentSlide) {
-              dot.classList.remove("w-1.5", "bg-slate-600");
-              dot.classList.add("w-4", "bg-purple-400");
-            } else {
-              dot.classList.remove("w-4", "bg-purple-400");
-              dot.classList.add("w-1.5", "bg-slate-600");
-            }
-          });
-        };
-
-        const startSlider = () => {
-          if (sliderInterval) clearInterval(sliderInterval);
-          sliderInterval = setInterval(() => {
-            showSlide(currentSlide + 1);
-          }, 7000);
-        };
-
-        if (slides.length) {
-          showSlide(0);
-          startSlider();
-
-          if (prevBtn) {
-            prevBtn.addEventListener("click", () => {
-              showSlide(currentSlide - 1);
-              startSlider();
-            });
-          }
-          if (nextBtn) {
-            nextBtn.addEventListener("click", () => {
-              showSlide(currentSlide + 1);
-              startSlider();
-            });
-          }
-        }
-
-        // Initialize AOS
-        AOS.init({
-          duration: 800,
-          once: true,
-          offset: 100
-        });
-      });
-    </script>
+    <!-- <script></script> -->
   </body>
 </html>
