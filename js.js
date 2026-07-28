@@ -10,7 +10,7 @@
       // Typing animation for the title
       const titles = [
         "Full-Stack Web Developer",
-        "Front End Developer", 
+        "fornt End Developer", 
         "Back End Developer"
       ];
       
