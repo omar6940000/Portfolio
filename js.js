@@ -1,389 +1,312 @@
+'use strict';
 
+// Project content is loaded from projects.js; this file renders the interface.
+const projects = portfolioProjects.map((project,index) => ({...project,number:String(index+1).padStart(2,'0')}));
 
-      // Loading Screen
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          document.getElementById('loader').classList.add('hidden');
-        }, 2200);
-      });
+const $ = (selector, scope = document) => scope.querySelector(selector);
+const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+let language = 'en';
+let currentFilter = 'all';
+let selectedProjectId = projects[0]?.id ?? '';
+let galleryAnimations = [];
+let openProject = null;
+let previousFocus = null;
+let toastTimer;
+const translate = (value) => value[language];
+const safeStore = (key, value) => { try {localStorage.setItem(key, value);} catch (_) {} };
 
-      // Typing animation for the title
-      const titles = [
-        "Full-Stack Web Developer",
-        "front End Developer", 
-        "Back End Developer"
-      ];
-      
-      let currentTitleIndex = 0;
-      let currentCharIndex = 0;
-      let isDeleting = false;
-      let typingSpeed = 100;
-      let deletingSpeed = 50;
-      let pauseTime = 2000;
-      
-      const animatedTitleElement = document.getElementById('animatedTitle');
-      
-      function typeWriter() {
-        const currentTitle = titles[currentTitleIndex];
-        
-        if (!isDeleting) {
-          animatedTitleElement.textContent = currentTitle.substring(0, currentCharIndex + 1);
-          currentCharIndex++;
-          
-          if (currentCharIndex === currentTitle.length) {
-            isDeleting = true;
-            setTimeout(typeWriter, pauseTime);
-            return;
-          }
-        } else {
-          animatedTitleElement.textContent = currentTitle.substring(0, currentCharIndex - 1);
-          currentCharIndex--;
-          
-          if (currentCharIndex === 0) {
-            isDeleting = false;
-            currentTitleIndex = (currentTitleIndex + 1) % titles.length;
-          }
-        }
-        
-        const speed = isDeleting ? deletingSpeed : typingSpeed;
-        setTimeout(typeWriter, speed);
-      }
-      
-      typeWriter();
+function applyTranslations(scope = document) {
+  $$('[data-en][data-ar]', scope).forEach(element => { element.textContent = element.dataset[language]; });
+  $$('[data-en-label][data-ar-label]', scope).forEach(element => { element.setAttribute('aria-label', element.dataset[language + 'Label']); });
+  $$('[data-en-alt][data-ar-alt]', scope).forEach(element => { element.alt = element.dataset[language + 'Alt']; });
+  $$('[data-en-placeholder][data-ar-placeholder]', scope).forEach(element => { element.placeholder = element.dataset[language + 'Placeholder']; });
+}
 
-      // Mobile Menu
-      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      
-      mobileMenuBtn.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-      });
+function setLanguage(nextLanguage) {
+  language = nextLanguage === 'ar' ? 'ar' : 'en';
+  document.documentElement.lang = language;
+  document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+  applyTranslations();
+  $('#language-toggle').textContent = language === 'en' ? 'عربي' : 'EN';
+  $('#language-toggle').setAttribute('aria-label', language === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية');
+  document.title = language === 'en' ? 'Omar Nassar — Full-Stack Web Developer' : 'عمر نصار — مطور ويب متكامل';
+  document.querySelector('meta[name="description"]').content = language === 'en'
+    ? 'Omar Nassar is a full-stack web developer working with Vue.js, PHP and MySQL. Explore e-commerce, restaurant, dashboard and business website projects.'
+    : 'عمر نصار، مطور ويب متكامل باستخدام Vue.js وPHP وMySQL. اكتشف مشروعات المتاجر والمطاعم ولوحات التحكم ومواقع الأعمال.';
+  updateProjects();
+  if (openProject) populateDialog(openProject);
+  $('#form-status').textContent = '';
+  safeStore('omar-language', language);
+  updateThemeButton();
+}
 
-      // Close mobile menu when clicking a link
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-        });
-      });
-
-
-      function toggleLanguage() {
-        currentLang = currentLang === 'en' ? 'ar' : 'en';
-        const t = translations[currentLang];
-        
-        document.body.classList.toggle('rtl', currentLang === 'ar');
-        document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
-        
-        document.getElementById('langText').textContent = t.langBtn;
-        document.querySelector('.lang-text-mobile').textContent = t.langBtn;
-        
-        document.querySelectorAll('[data-en][data-ar]').forEach(el => {
-          el.textContent = currentLang === 'ar' ? el.dataset.ar : el.dataset.en;
-        });
-        
-        const heroGreeting = document.querySelector('.font-ar');
-        if (heroGreeting) heroGreeting.textContent = t.heroGreeting;
-        
-        const hireMeBtn = document.getElementById('hireMeBtn');
-        const viewProjectsBtn = document.getElementById('viewProjectsBtn');
-        const downloadCvBtn = document.getElementById('downloadCvBtn');
-        
-        if (hireMeBtn) hireMeBtn.textContent = t.hireMe;
-        if (viewProjectsBtn) viewProjectsBtn.textContent = t.viewProjects;
-        if (downloadCvBtn) downloadCvBtn.textContent = t.downloadCv;
-        
-        document.querySelectorAll('.section-badge').forEach((badge, index) => {
-          const badges = ['aboutBadge', 'skillsBadge', 'projectsBadge', 'certificatesBadge', 'servicesBadge', 'testimonialsBadge', 'contactBadge'];
-          if (badges[index]) badge.textContent = t[badges[index]];
-        });
-      }
-
-      document.getElementById('langToggle').addEventListener('click', toggleLanguage);
-      document.getElementById('langToggleMobile').addEventListener('click', toggleLanguage);
-
-      // Active Nav Link on Scroll
-      function updateActiveNavLink() {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        
-        let currentSection = '';
-        const scrollPos = window.scrollY + 150;
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          
-          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            currentSection = section.getAttribute('id');
-          }
-        });
-        
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.dataset.section === currentSection) {
-            link.classList.add('active');
-          }
-        });
-        
-        mobileNavLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.dataset.section === currentSection) {
-            link.classList.add('active');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', updateActiveNavLink);
-      window.addEventListener('load', updateActiveNavLink);
-
-      document.addEventListener("DOMContentLoaded", () => {
-        // Set current year in footer
-        const yearSpan = document.getElementById("year");
-        if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-
-        // Smooth scroll buttons in hero
-        const hireMeBtn = document.getElementById("hireMeBtn");
-        const viewProjectsBtn = document.getElementById("viewProjectsBtn");
-        const downloadCvBtn = document.getElementById("downloadCvBtn");
-
-        if (hireMeBtn) {
-          hireMeBtn.addEventListener("click", () => {
-            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-          });
-        }
-
-        if (viewProjectsBtn) {
-          viewProjectsBtn.addEventListener("click", () => {
-            document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-          });
-        }
-
-        if (downloadCvBtn) {
-          downloadCvBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            alert("CV download will be available soon.");
-          });
-        }
-
-        // Hero 3D tilt effect
-        const heroVisual = document.getElementById("heroVisual");
-        const heroVisualInner = document.getElementById("heroVisualInner");
-        if (heroVisual && heroVisualInner) {
-          const maxRotate = 12;
-          heroVisual.addEventListener("mousemove", (e) => {
-            const rect = heroVisual.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateY = ((x - centerX) / centerX) * maxRotate;
-            const rotateX = -((y - centerY) / centerY) * maxRotate;
-            heroVisualInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-          });
-
-          heroVisual.addEventListener("mouseleave", () => {
-            heroVisualInner.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0)";
-          });
-        }
-
-        // Reveal on scroll
-        const revealElements = document.querySelectorAll(".reveal-on-scroll");
-        if ("IntersectionObserver" in window) {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("visible");
-                  observer.unobserve(entry.target);
-                }
-              });
-            },
-            { threshold: 0.15 }
-          );
-          revealElements.forEach((el) => observer.observe(el));
-        } else {
-          revealElements.forEach((el) => el.classList.add("visible"));
-        }
-
-        // Animate skill bars when in view
-        const skillBars = document.querySelectorAll("[data-skill-bar]");
-        if ("IntersectionObserver" in window && skillBars.length) {
-          const skillObserver = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  const el = entry.target;
-                  const value = el.getAttribute("data-skill-bar");
-                  if (value) {
-                    setTimeout(() => {
-                      el.style.width = value + "%";
-                    }, 200);
-                  }
-                  skillObserver.unobserve(el);
-                }
-              });
-            },
-            { threshold: 0.3 }
-          );
-          skillBars.forEach((bar) => skillObserver.observe(bar));
-        } else {
-          skillBars.forEach((bar) => {
-            const value = bar.getAttribute("data-skill-bar");
-            if (value) bar.style.width = value + "%";
-          });
-        }
-
-        // Contact form
-        const contactForm = document.getElementById("contactForm");
-        const contactStatus = document.getElementById("contactStatus");
-        if (contactForm && contactStatus) {
-          contactForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            contactStatus.textContent = "Thank you! This is a demo form — your message is not actually sent.";
-            contactStatus.classList.remove("text-red-400");
-            contactStatus.classList.add("text-emerald-300");
-            contactForm.reset();
-          });
-        }
-
-        // Testimonials slider
-        const slides = Array.from(document.querySelectorAll(".testimonial-slide"));
-        const prevBtn = document.getElementById("prevTestimonial");
-        const nextBtn = document.getElementById("nextTestimonial");
-        const dots = Array.from(document.querySelectorAll("[data-testimonial-dot]"));
-        let currentSlide = 0;
-        let sliderInterval;
-
-        const showSlide = (index) => {
-          if (!slides.length) return;
-          currentSlide = (index + slides.length) % slides.length;
-          slides.forEach((slide, i) => {
-            slide.classList.toggle("hidden", i !== currentSlide);
-          });
-          dots.forEach((dot, i) => {
-            if (i === currentSlide) {
-              dot.classList.remove("w-1.5", "bg-slate-600");
-              dot.classList.add("w-4", "bg-purple-400");
-            } else {
-              dot.classList.remove("w-4", "bg-purple-400");
-              dot.classList.add("w-1.5", "bg-slate-600");
-            }
-          });
-        };
-
-        const startSlider = () => {
-          if (sliderInterval) clearInterval(sliderInterval);
-          sliderInterval = setInterval(() => {
-            showSlide(currentSlide + 1);
-          }, 7000);
-        };
-
-        if (slides.length) {
-          showSlide(0);
-          startSlider();
-
-          if (prevBtn) {
-            prevBtn.addEventListener("click", () => {
-              showSlide(currentSlide - 1);
-              startSlider();
-            });
-          }
-          if (nextBtn) {
-            nextBtn.addEventListener("click", () => {
-              showSlide(currentSlide + 1);
-              startSlider();
-            });
-          }
-        }
-
-        // Initialize AOS
-        AOS.init({
-          duration: 800,
-          once: true,
-          offset: 100
-        });
-      });
-    
-
-
-
-
-
-(function () {
-  'use strict';
-
-  let currentLightboxIndex = 0;
-  const certificateGrid = document.getElementById('certificateGrid');
-  const lightbox = document.getElementById('certLightbox');
-  const lightboxImg = document.getElementById('certLightboxImg');
-  const lightboxCounter = document.getElementById('certLightboxCounter');
-  const lightboxClose = document.getElementById('certLightboxClose');
-  const lightboxPrev = document.getElementById('certLightboxPrev');
-  const lightboxNext = document.getElementById('certLightboxNext');
-
-  function init() {
-    bindEvents();
-    updateLightboxIndices();
-  }
-
-  function bindEvents() {
-    // Click on image wrappers to open lightbox
-    certificateGrid.addEventListener('click', (e) => {
-      const wrapper = e.target.closest('.certificate-image-wrapper');
-      if (wrapper) {
-        const index = parseInt(wrapper.getAttribute('data-lightbox-index'));
-        openLightbox(index);
-      }
-    });
-
-    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-    if (lightboxPrev) lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
-    if (lightboxNext) lightboxNext.addEventListener('click', () => navigateLightbox(1));
-    
-    if (lightbox) {
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-      });
+// Build every project choice from projects.js; no per-project HTML is required.
+function buildProjectIndex() {
+  const fragment=document.createDocumentFragment();
+  projects.forEach(project=>{
+    const button=document.createElement('button');
+    button.className='project-entry';
+    button.type='button';
+    button.dataset.selectProject=project.id;
+    button.setAttribute('aria-pressed','false');
+    button.setAttribute('aria-controls','project-stage');
+    const number=document.createElement('span');
+    number.className='entry-number';number.textContent=project.number;number.setAttribute('aria-hidden','true');
+    const copy=document.createElement('span');copy.className='entry-copy';
+    const name=document.createElement('strong');
+    const category=document.createElement('span');category.className='entry-category';
+    for(const lang of ['en','ar']) {
+      name.dataset[lang]=project.name[lang];
+      category.dataset[lang]=project.category[lang].split(' · ')[0];
     }
+    name.textContent=translate(project.name);
+    category.textContent=project.category[language].split(' · ')[0];
+    copy.append(name,category);
+    const arrow=document.createElement('span');arrow.className='entry-arrow';arrow.textContent='↗';arrow.setAttribute('aria-hidden','true');
+    button.append(number,copy,arrow);fragment.append(button);
+  });
+  $('.project-entries').replaceChildren(fragment);
+  $('.collection-bar').hidden=false;
+}
 
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') navigateLightbox(-1);
-      if (e.key === 'ArrowRight') navigateLightbox(1);
+function matchingProjects() {
+  return projects.filter(project => currentFilter === 'all' || project.group === currentFilter);
+}
+
+const projectIconFiles = {'HTML5':'html5','CSS3':'css3','JavaScript':'javascript','Vue.js':'vuejs','PHP':'php','MySQL':'mysql','AJAX':'ajax'};
+
+function renderProject(project, animate = false) {
+  const stage = $('#project-stage');
+  galleryAnimations.forEach(animation => animation.cancel());
+  galleryAnimations = [];
+  stage.style.setProperty('--project-color',project.color);
+  stage.style.setProperty('--project-ink',project.ink);
+  stage.dataset.projectId = project.id;
+  $('#showcase-canvas-label').textContent = `${project.number} / ${project.name.en.toUpperCase()}`;
+  $('#showcase-watermark').textContent = project.number;
+  $('#showcase-category').textContent = translate(project.category);
+  $('#showcase-title').textContent = translate(project.name);
+  $('#showcase-headline').textContent = translate(project.headline);
+  $('#showcase-description').textContent = translate(project.description);
+  $('#showcase-position').textContent = `${project.number} / ${String(projects.length).padStart(2,'0')}`;
+  const image = $('#showcase-image');
+  $('#showcase-screen').hidden = !project.image;
+  $('#showcase-cover').hidden = !!project.image;
+  if (project.image) {
+    image.src = project.image;
+    image.alt = translate(project.title);
+    $('#showcase-host').textContent = project.host;
+  } else {
+    image.removeAttribute('src');
+    image.alt = '';
+    $('#showcase-cover-title').textContent = project.coverTitle;
+    $('#showcase-cover-caption').textContent = project.coverCaption;
+  }
+  const previewLabel = $('#showcase-preview-label');
+  previewLabel.dataset.en = project.image ? 'WEBSITE PREVIEW' : 'PROJECT COVER';
+  previewLabel.dataset.ar = project.image ? 'معاينة الموقع' : 'غلاف المشروع';
+  previewLabel.textContent = previewLabel.dataset[language];
+  const live = $('#showcase-live-icon');
+  live.href = project.url;
+  live.setAttribute('aria-label',language==='en' ? `Open ${project.name.en} website` : `فتح موقع ${project.name.ar}`);
+  $('#showcase-stack').replaceChildren(...project.stack.map(name => {
+    const item=document.createElement('span');
+    if(projectIconFiles[name]) {const icon=document.createElement('img');icon.src=`assets/icons/${projectIconFiles[name]}.svg`;icon.alt='';icon.width=15;icon.height=15;item.append(icon);}
+    item.append(document.createTextNode(name));
+    return item;
+  }));
+  const matching=matchingProjects();
+  const position=matching.findIndex(item=>item.id===project.id);
+  $('#showcase-step-count').textContent=`${String(position+1).padStart(2,'0')} — ${String(matching.length).padStart(2,'0')}`;
+  $$('.project-entry').forEach(button=>{
+    const active=button.dataset.selectProject===project.id;
+    button.classList.toggle('is-selected',active);
+    button.setAttribute('aria-pressed',String(active));
+  });
+  if (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const targets=[$('#showcase-screen').hidden?$('#showcase-cover'):$('#showcase-screen'),$('.showcase-info')];
+    targets.forEach((element,index)=>galleryAnimations.push(element.animate(
+      [{opacity:0,transform:`translateY(${index?10:18}px)`},{opacity:1,transform:'translateY(0)'}],
+      {duration:450,delay:index*45,easing:'cubic-bezier(.22,1,.36,1)',fill:'backwards'}
+    )));
+  }
+}
+
+function selectProject(id, announce = true) {
+  const project=matchingProjects().find(item=>item.id===id);
+  if(!project || selectedProjectId===id) return;
+  selectedProjectId=id;
+  renderProject(project,true);
+  if(announce) $('#gallery-announcement').textContent=language==='en' ? `${project.name.en} selected. ${translate(project.headline)}` : `تم اختيار ${project.name.ar}. ${translate(project.headline)}`;
+}
+
+function updateProjects() {
+  const matching=matchingProjects();
+  if(!matching.some(project=>project.id===selectedProjectId)) selectedProjectId=matching[0]?.id ?? '';
+  $$('.project-entry').forEach(button=>{button.hidden=!matching.some(project=>project.id===button.dataset.selectProject);});
+  $$('.filter').forEach(button=>{
+    const active=button.dataset.filter===currentFilter;
+    const count=projects.filter(project=>button.dataset.filter==='all'||project.group===button.dataset.filter).length;
+    button.querySelector('sup').textContent=String(count).padStart(2,'0');
+    button.disabled=count===0;
+    button.classList.toggle('active',active);
+    button.setAttribute('aria-pressed',String(active));
+  });
+  $('#project-count').textContent=language==='en' ? `${String(matching.length).padStart(2,'0')} PROJECTS` : `${String(matching.length).padStart(2,'0')} مشاريع`;
+  $('#project-gallery').hidden=matching.length===0;
+  $('#project-empty').hidden=matching.length>0;
+  if(matching.length) renderProject(matching.find(project=>project.id===selectedProjectId));
+}
+
+
+function populateDialog(project) {
+  $('#dialog-category').textContent = translate(project.category);
+  $('#dialog-title').textContent = translate(project.title);
+  $('#dialog-description').textContent = translate(project.description);
+  $('#dialog-focus').textContent = translate(project.focus);
+  $('#dialog-live').href = project.url;
+  $('#dialog-stack').replaceChildren(...project.stack.map(name => {const tag = document.createElement('span');tag.textContent = name;return tag;}));
+  const visual = $('#dialog-visual');
+  visual.replaceChildren();
+  if (project.image) {
+    const image = document.createElement('img');
+    image.src = project.image;
+    image.alt = translate(project.title);
+    visual.append(image);
+  } else {
+    const cover=document.createElement('div');
+    cover.className='dialog-editorial-cover';
+    cover.style.setProperty('--project-color',project.color);
+    cover.style.setProperty('--project-ink',project.ink);
+    const title=document.createElement('strong');title.textContent=project.coverTitle;
+    const caption=document.createElement('span');caption.textContent=project.coverCaption;
+    cover.append(title,caption);
+    visual.append(cover);
+  }
+}
+
+function showProject(id) {
+  const project = projects.find(item => item.id === id);
+  if (!project) return;
+  openProject = project;
+  previousFocus = document.activeElement;
+  populateDialog(project);
+  $('#project-dialog').showModal();
+  document.body.style.overflow = 'hidden';
+  $('#project-dialog').scrollTop = 0;
+  $('#dialog-close').focus();
+}
+
+function closeProject() {$('#project-dialog').close();}
+$('#project-dialog').addEventListener('close', () => {
+  openProject = null;
+  document.body.style.overflow = '';
+  previousFocus?.focus({preventScroll:true});
+});
+$('#dialog-close').addEventListener('click', closeProject);
+$('#project-dialog').addEventListener('click', event => {
+  if (event.target === $('#project-dialog')) {
+    const rect = event.target.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) closeProject();
+  }
+});
+buildProjectIndex();
+$$('.project-entry').forEach(button=>button.addEventListener('click',()=>selectProject(button.dataset.selectProject)));
+$$('.filter').forEach(button=>button.addEventListener('click',()=>{
+  currentFilter=button.dataset.filter;
+  updateProjects();
+  $('#gallery-announcement').textContent=language==='en' ? `${matchingProjects().length} projects. ${translate(projects.find(project=>project.id===selectedProjectId).name)} selected.` : `${matchingProjects().length} مشاريع. تم اختيار ${translate(projects.find(project=>project.id===selectedProjectId).name)}.`;
+}));
+$('#showcase-details').addEventListener('click',()=>showProject(selectedProjectId));
+function stepProject(direction) {
+  const matching=matchingProjects();
+  const index=matching.findIndex(project=>project.id===selectedProjectId);
+  selectProject(matching[(index+direction+matching.length)%matching.length].id);
+}
+$('#project-previous').addEventListener('click',()=>stepProject(-1));
+$('#project-next').addEventListener('click',()=>stepProject(1));
+const projectMotion=matchMedia('(prefers-reduced-motion: reduce)');
+projectMotion.addEventListener('change',()=>{if(projectMotion.matches) galleryAnimations.forEach(animation=>animation.cancel());});
+
+function closeMenu() {
+  $('#menu-toggle').setAttribute('aria-expanded', 'false');
+  $('#mobile-nav').hidden = true;
+}
+$('#menu-toggle').addEventListener('click', () => {
+  const expanded = $('#menu-toggle').getAttribute('aria-expanded') === 'true';
+  $('#menu-toggle').setAttribute('aria-expanded', String(!expanded));
+  $('#mobile-nav').hidden = expanded;
+});
+$$('#mobile-nav a').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && !$('#mobile-nav').hidden) {closeMenu();$('#menu-toggle').focus();}
+});
+document.addEventListener('click', event => {if (!event.target.closest('.site-header')) closeMenu();});
+matchMedia('(min-width: 851px)').addEventListener('change', event => {if (event.matches) closeMenu();});
+
+function updateThemeButton() {
+  const isDark = document.documentElement.dataset.theme !== 'light';
+  $('#theme-toggle').setAttribute('aria-label',language === 'en' ? `Switch to ${isDark?'light':'dark'} mode` : `تفعيل المظهر ${isDark?'الفاتح':'الداكن'}`);
+  $('#theme-toggle').setAttribute('aria-pressed', String(!isDark));
+  document.querySelector('meta[name="theme-color"]').content = isDark ? '#111410' : '#f7f7ef';
+}
+$('#theme-toggle').addEventListener('click', () => {
+  const theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+  document.documentElement.dataset.theme = theme;
+  safeStore('omar-theme', theme);
+  updateThemeButton();
+});
+$('#language-toggle').addEventListener('click', () => setLanguage(language === 'en' ? 'ar' : 'en'));
+
+function notify(message) {
+  const toast = $('#toast');
+  clearTimeout(toastTimer);
+  toast.textContent = message;
+  toast.classList.add('visible');
+  toastTimer = setTimeout(() => toast.classList.remove('visible'), 3500);
+}
+$('#copy-email').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText('omar6940000@gmail.com');
+    notify(language === 'en' ? 'Email address copied.' : 'تم نسخ البريد الإلكتروني.');
+  } catch (_) {
+    const range = document.createRange();
+    range.selectNodeContents($('.email-row>a'));
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    notify(language === 'en' ? 'Email selected. Use your device’s Copy action.' : 'تم تحديد البريد. استخدم خيار النسخ على جهازك.');
+  }
+});
+
+// This opens a draft in the visitor's mail app; it never claims a message was sent.
+$('#contact-form').addEventListener('submit', event => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  if (!form.reportValidity()) return;
+  const data = new FormData(form);
+  const service = form.elements.service.selectedOptions[0].textContent;
+  const subject = `${language === 'en' ? 'Portfolio enquiry' : 'استفسار من البورتفوليو'} — ${service}`;
+  const body = language === 'en'
+    ? `Hello Omar,\n\n${data.get('message').trim()}\n\nProject type: ${service}\nName: ${data.get('name').trim()}\nReply to: ${data.get('email').trim()}`
+    : `أهلاً عمر،\n\n${data.get('message').trim()}\n\nنوع المشروع: ${service}\nالاسم: ${data.get('name').trim()}\nالبريد للرد: ${data.get('email').trim()}`;
+  const link = document.createElement('a');
+  link.href = `mailto:omar6940000@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  link.click();
+  $('#form-status').textContent = language === 'en'
+    ? 'Your draft is ready for your email app. If it does not open, use the email address or WhatsApp link alongside.'
+    : 'رسالتك جاهزة لفتحها في تطبيق البريد. إذا لم يفتح، استخدم عنوان البريد أو رابط واتساب بجانب النموذج.';
+});
+
+if ('IntersectionObserver' in window) {
+  const sections = $$('main section[id]').filter(section => section.id !== 'home');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) $$('.desktop-nav a').forEach(link => link.classList.toggle('active',link.hash === '#' + entry.target.id));
     });
-  }
-
-  function updateLightboxIndices() {
-    const wrappers = certificateGrid.querySelectorAll('.certificate-image-wrapper');
-    wrappers.forEach((wrapper, i) => {
-      wrapper.setAttribute('data-lightbox-index', i);
-    });
-  }
-
-  function openLightbox(index) {
-    const images = certificateGrid.querySelectorAll('.certificate-image-wrapper img');
-    if (index < 0 || index >= images.length) return;
-    
-    currentLightboxIndex = index;
-    lightboxImg.src = images[index].src;
-    lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${images.length}`;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  function navigateLightbox(direction) {
-    const images = certificateGrid.querySelectorAll('.certificate-image-wrapper img');
-    currentLightboxIndex = (currentLightboxIndex + direction + images.length) % images.length;
-    lightboxImg.src = images[currentLightboxIndex].src;
-    lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${images.length}`;
-  }
-
-  document.addEventListener('DOMContentLoaded', init);
-})();
+  }, {rootMargin:'-12% 0px -60% 0px',threshold:0});
+  sections.forEach(section => observer.observe(section));
+}
+$('#year').textContent = new Date().getFullYear();
+try {language = localStorage.getItem('omar-language') === 'ar' ? 'ar' : 'en';} catch (_) {}
+setLanguage(language);

@@ -1,0 +1,139 @@
+/* Full-width chapters, each with a distinct palette in both themes. */
+.section-band {
+  position:relative;
+  background:var(--bg);
+  color:var(--text);
+  border-top:1px solid var(--line);
+  border-bottom:0;
+  transition:background-color .25s,color .25s,border-color .25s;
+}
+.section-band:before {
+  content:'';
+  position:absolute;
+  inset-block-start:-1px;
+  inset-inline-start:max(50px,calc((100% - var(--max))/2));
+  width:64px;
+  height:3px;
+  background:var(--accent);
+  pointer-events:none;
+}
+/* Blue ink / cool paper: the project gallery. */
+#work {
+  --bg:#172b36;--surface:#203b48;--surface2:#294653;
+  --text:#f1f5f2;--muted:#b1c5ce;--line:#3c5663;--accent:#d5fa5b;
+  color-scheme:dark;
+}
+/* Warm stone: a more personal chapter around the portrait. */
+#about {
+  --bg:#39322a;--surface:#443c33;--surface2:#50473c;
+  --text:#ffffff;--muted:#c4b9a9;--line:#ffffff;--accent:#e1e9a5;
+  color-scheme:dark;
+}
+/* Deep evergreen: the technical workbench. */
+#skills {
+  --bg:#111e1b;--surface:#192c25;--surface2:#263f35;
+  --text:#edf5ec;--muted:#afc5b8;--line:#355246;--accent:#cfeb8d;
+  color-scheme:dark;
+}
+/* Muted plum: services and capabilities. */
+#expertise {
+  --bg:#302a40;--surface:#3b344d;--surface2:#453d58;
+  --text:#f1edf6;--muted:#c5bcd2;--line:#5b506f;--accent:#dbefa3;
+  color-scheme:dark;
+}
+/* A deliberate change of value before the final call to action. */
+.process-section {
+  --bg:#dce7c8;--surface:#c7d7b1;--surface2:#c2d3a9;
+  --text:#22351f;--muted:#465b39;--line:#a8bb90;--accent:#35591e;
+  color-scheme:light;
+  padding-block:76px 82px;
+}
+#contact {
+  --bg:#15232d;--surface:#1e333e;--surface2:#29444f;
+  --text:#eff5f2;--muted:#afc5ce;--line:#3a5966;--accent:#d5fa5b;
+  color-scheme:dark;
+}
+/* The moving toolkit becomes the first clear chapter break. */
+.stack-strip {
+  --bg:#d5fa5b;--surface:#cce86b;--surface2:#c2df6a;
+  --text:#233516;--muted:#344c21;--line:#b5d54e;--accent:#365019;
+  background:var(--bg);
+  color:var(--text);
+  border-block-color:var(--line);
+  color-scheme:light;
+}
+.stack-strip .ticker-item {color:var(--text);}
+.stack-strip .ticker-toggle {color:var(--text);border-color:#526b2c70;}
+.stack-strip .ticker-item img {background:#f8fbe7;}
+/* Local surfaces remain readable against their own chapter background. */
+#about .about-portrait {box-shadow:0 20px 40px #100b0824;}
+#skills .stack-workbench {box-shadow:0 22px 52px #030c0828;}
+#skills .stack-panels {background:var(--surface);}
+#skills .stack-sidebar {background:var(--surface2);}
+#skills .stack-tab[aria-selected=true] {background:var(--bg);border-color:var(--accent);}
+#skills .skill-item {background:var(--bg);}
+#expertise .service[open] {background:var(--surface);padding-inline:24px;}
+#expertise .service {transition:background .25s,padding .25s;}
+#expertise .learning-note {background:var(--surface2);}
+.process-section .process-grid>div {border-inline-start-color:var(--accent);}
+#contact .contact-layout {align-items:start;}
+#contact .contact-form {background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:30px;box-shadow:0 20px 48px #07141b20;}
+#contact select option {background:var(--surface);color:var(--text);}
+#contact input::placeholder,#contact textarea::placeholder {color:var(--muted);opacity:.8;}
+#contact .contact-layout h2 {margin-top:5px;}
+:root[data-theme=light] #work {
+  --bg:#e0e9ed;--surface:#cfdee4;--surface2:#c3d6de;
+  --text:#1d3542;--muted:#405866;--line:#a7bfca;--accent:#385f32;
+  color-scheme:light;
+}
+:root[data-theme=light] #about {
+  --bg:#efe2cd;--surface:#e6d4b8;--surface2:#dfc9a9;
+  --text:#3b3021;--muted:#62503a;--line:#c9b28e;--accent:#4e642e;
+  color-scheme:light;
+}
+:root[data-theme=light] #skills {
+  --bg:#f8faf5;--surface:#e9efdf;--surface2:#dce7cf;
+  --text:#263b29;--muted:#506248;--line:#bccbb3;--accent:#3a622c;
+  color-scheme:light;
+}
+:root[data-theme=light] #expertise {
+  --bg:#e4deed;--surface:#d8cee5;--surface2:#cec1de;
+  --text:#382d46;--muted:#5d4a6a;--line:#b8a6ca;--accent:#4b6230;
+  color-scheme:light;
+}
+:root[data-theme=light] .process-section {
+  --bg:#23392f;--surface:#2e4b3d;--surface2:#3b5a49;
+  --text:#f0f4e8;--muted:#c0ceb7;--line:#55715d;--accent:#d5ed99;
+  color-scheme:dark;
+}
+:root[data-theme=light] #contact {
+  --bg:#dde6ce;--surface:#f4f7eb;--surface2:#d0dfbd;
+  --text:#2c3b23;--muted:#4f633d;--line:#a8bd91;--accent:#3f611f;
+  color-scheme:light;
+}
+:root[data-theme=light] #about .about-portrait {box-shadow:0 20px 38px #73522216;}
+:root[data-theme=light] #skills .stack-workbench {box-shadow:0 20px 48px #23391c0c;}
+:root[data-theme=light] #contact .contact-form {box-shadow:0 18px 38px #32451c0c;}
+@media(max-width:850px) {
+  .section-band:before {inset-inline-start:28px;width:48px;}
+  .process-section {padding-block:65px 70px;}
+  #contact .contact-form {padding:24px;}
+  #expertise .service[open] {padding-inline:18px;}
+}
+@media(max-width:620px) {
+  .section-band:before {inset-inline-start:20px;width:42px;}
+  .process-section {padding-block:53px 58px;}
+  #contact .contact-form {padding:24px 20px;border-radius:7px;}
+  #expertise .service[open] {padding-inline:13px;}
+}
+@media(max-width:360px) {
+  .section-band:before {inset-inline-start:16px;}
+  #contact .contact-form {padding:22px 16px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .section-band,#expertise .service {transition:none;}
+}
+@media print {
+  .section-band {background:white!important;color:#172019!important;--text:#172019;--muted:#475241;--line:#ccd3c5;--accent:#314c23;}
+  .section-band:before {display:none;}
+}

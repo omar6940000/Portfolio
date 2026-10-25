@@ -1,0 +1,55 @@
+/* Motion uses transforms and opacity, and follows the visitor's motion preference. */
+.scroll-progress{position:fixed;inset:0 0 auto;height:2px;z-index:80;background:var(--accent);transform:scaleX(var(--scroll-progress,0));transform-origin:left;pointer-events:none}
+html[dir=rtl] .scroll-progress{transform-origin:right}
+.site-header{transition:box-shadow .3s,background .3s}
+.site-header.is-scrolled{box-shadow:0 8px 28px #00000013}
+.ticker-shell{display:flex;align-items:center;gap:28px;padding-block:23px;min-width:0}
+.ticker-shell>.stack-label{width:110px;max-width:none;flex-shrink:0;font-size:8px;line-height:1.8;letter-spacing:1.5px}
+.ticker-window{flex:1;min-width:0;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);direction:ltr}
+.ticker-track{width:max-content;display:flex;direction:ltr;animation:toolkit-travel 30s linear infinite;will-change:transform}
+.ticker-group{display:flex;align-items:center;flex-shrink:0;gap:35px;padding-inline-end:35px}
+.ticker-item{display:inline-flex;align-items:center;gap:11px;white-space:nowrap;font-family:Studio,Arial,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.5px;color:var(--muted)}
+.ticker-item img{width:26px;height:26px;object-fit:contain;flex-shrink:0;padding:3px;background:#f5f6ee;border-radius:5px}
+.ticker-item .ticker-separator{font-size:15px;color:var(--accent);margin-inline-start:24px;opacity:.7}
+.ticker-toggle{width:31px;height:31px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;color:var(--muted)}
+.ticker-toggle svg{width:15px;height:15px;stroke-width:1.6}
+.ticker-play{display:none!important}
+.stack-strip.is-paused .ticker-track,.ticker-window:hover .ticker-track{animation-play-state:paused}
+.stack-strip.is-paused .ticker-pause{display:none}
+.stack-strip.is-paused .ticker-play{display:block!important}
+.hero-copy>.availability{animation:hero-enter .75s .05s both}
+.hero-intro{animation:hero-enter .75s .12s both}
+.hero h1{animation:hero-enter .85s .2s both}
+.hero-description{animation:hero-enter .8s .3s both}
+.hero-buttons{animation:hero-enter .8s .4s both}
+.hero-footnote{animation:hero-enter .8s .5s both}
+.hero-art{animation:hero-enter 1s .25s both}
+.chip-vue{animation:chip-float 6s ease-in-out infinite}
+.chip-php{animation:chip-float 7s ease-in-out -3s infinite}
+.code-note{animation:chip-float 8s ease-in-out -2s infinite}
+.orbit-one{animation:orbit-shift 18s ease-in-out infinite}
+.orbit-two{animation:orbit-shift 23s ease-in-out -5s infinite reverse}
+.motion-enabled .reveal-target{transition:opacity .75s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms),transform .75s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms)}
+.motion-enabled .reveal-target:not(.is-in-view){opacity:0;transform:translateY(26px)}
+.motion-enabled .reveal-target.is-in-view{opacity:1;transform:translateY(0)}
+.button{position:relative;overflow:hidden}
+.button-primary:before{content:'';position:absolute;inset:-30% auto -30% -50%;width:35%;background:linear-gradient(90deg,transparent,#ffffff63,transparent);transform:skewX(-25deg);transition:left .55s ease}
+.button-primary:hover:before{left:135%}
+.button>span{position:relative;z-index:1}
+.button>span:last-child:not(:first-child){transition:transform .25s}
+.button:hover>span:last-child:not(:first-child){transform:translate(2px,-2px)}
+.project-title-row>a,.project-actions a>span:last-child,.text-link>span:last-child,.contact-links>a>span{transition:transform .25s,color .25s}
+.project-title-row>a:hover,.project-actions a:hover>span:last-child,.text-link:hover>span:last-child,.contact-links>a:hover>span{transform:translate(2px,-2px)}
+.project-dialog[open]{animation:dialog-enter .3s cubic-bezier(.22,1,.36,1)}
+.project-dialog[open]::backdrop{animation:backdrop-enter .25s ease}
+.service-content{animation:hero-enter .35s ease both}
+@keyframes toolkit-travel{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes hero-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes chip-float{0%,100%{translate:0 0}50%{translate:0 -9px}}
+@keyframes orbit-shift{0%,100%{rotate:-4deg}50%{rotate:7deg}}
+@keyframes dialog-enter{from{opacity:0;translate:0 14px;scale:.98}to{opacity:1;translate:0 0;scale:1}}
+@keyframes backdrop-enter{from{opacity:0}to{opacity:1}}
+@media(max-width:850px){.ticker-shell{gap:20px}.ticker-shell>.stack-label{width:85px;font-size:7px}.ticker-item{font-size:18px}.ticker-group{gap:27px;padding-inline-end:27px}.ticker-item .ticker-separator{margin-inline-start:15px}}
+@media(max-width:620px){.ticker-shell{position:relative;flex-wrap:wrap;gap:18px;padding-block:19px}.ticker-shell>.stack-label{width:auto;flex-basis:calc(100% - 50px);text-align:start;font-size:8px}.ticker-window{flex-basis:100%;order:3}.ticker-toggle{margin-inline-start:auto;width:27px;height:27px}.ticker-item{font-size:19px}.ticker-item img{width:22px;height:22px}.ticker-group{gap:25px;padding-inline-end:25px}.ticker-item .ticker-separator{margin-inline-start:13px}.ticker-track{animation-duration:27s}.motion-enabled .reveal-target:not(.is-in-view){transform:translateY(18px)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.motion-enabled .reveal-target:not(.is-in-view){opacity:1;transform:none}.ticker-track{transform:none;will-change:auto}.ticker-window{overflow-x:auto;mask-image:none;padding-bottom:5px}.ticker-group[aria-hidden=true]{display:none}.ticker-toggle{display:none}.ticker-shell>.stack-label{flex-basis:100%}.skill-item:hover,.button:hover{transform:none}}
+@media print{.scroll-progress,.ticker-toggle{display:none}.ticker-track{animation:none;transform:none}.ticker-group[aria-hidden=true]{display:none}.motion-enabled .reveal-target{opacity:1!important;transform:none!important}}
